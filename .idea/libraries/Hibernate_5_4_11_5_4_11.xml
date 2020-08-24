@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="Hibernate 5.4.11-5.4.11" type="hibernate">
+    <properties version="5.4.11" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/antlr-2.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/classmate-1.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/dom4j-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/FastInfoset-1.2.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/hibernate-commons-annotations-5.1.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/istack-commons-runtime-3.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/jandex-2.1.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/byte-buddy-1.10.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/javax.activation-api-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/javax.persistence-api-2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/javassist-3.24.0-GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/hibernate-core-5.4.11.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/jaxb-api-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/jboss-logging-3.3.2.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/jaxb-runtime-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/stax-ex-1.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/NCMS_Project/lib/txw2-2.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
