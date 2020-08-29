@@ -2,9 +2,11 @@ package com.spark.ncms.dto;
 
 import lombok.*;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class PatientDto {
 
      private String firstName;

@@ -1,6 +1,8 @@
 package com.spark.ncms.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spark.ncms.dto.PatientDto;
+import com.spark.ncms.listners.XBasicDataSource;
 import com.spark.ncms.service.PatientService;
 import com.spark.ncms.service.serviceImpl.PatientServiceImpl;
 import com.spark.ncms.response.PatientResponse;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
 
 @WebServlet(urlPatterns = "/api/v1/register")
 public class patientController extends HttpServlet {
@@ -49,13 +53,34 @@ public class patientController extends HttpServlet {
         patientDto.setEmail(email);
 
 
-        BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+        BasicDataSource bds = (XBasicDataSource) getServletContext().getAttribute("db");
         PatientService patientService= new PatientServiceImpl();
         try {
-            PatientResponse patientResponse = patientService.savePatient(patientDto, bds);
-            new StandardResponse(200, "true", patientResponse);
+
+            try(Connection con = bds.getConnection()) {
+                PatientResponse patientResponse = patientService.savePatient(patientDto, con);
+                ObjectMapper mapper = new ObjectMapper();
+               // String patientJson = mapper.writeValueAsString(patientResponse);
+                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patientResponse));
+                PrintWriter out = resp.getWriter();
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                out.print(responseJson);
+                out.flush();
+            }
+
+
         }catch (Exception e){
-            new StandardResponse(500, "false", "an error occured" );
+            ObjectMapper mapper = new ObjectMapper();
+            String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+            PrintWriter out = resp.getWriter();
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            out.print(responseJson);
+            out.flush();
+
+            e.printStackTrace();
+
         }
 
     }

@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PatientResponse {
-    private String serial_no;
-    private int bed_no;
-    private int queue_no;
+    private String serialNo;
+    private int bedNo;
+    private String hospitalName;
+    private int queueNo;
 }
