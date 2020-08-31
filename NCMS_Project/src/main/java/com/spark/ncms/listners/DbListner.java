@@ -21,8 +21,7 @@ public class DbListner implements ServletContextListener {
         sce.getServletContext().setAttribute("db", bds);
 
 
-       /* PatientDto patientDto = new PatientDto();
-        sce.getServletContext().setAttribute("patientDto", patientDto);*/
     }
+
 
 }

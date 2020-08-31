@@ -31,13 +31,11 @@ public class PatientServiceImpl implements PatientService {
         boolean isPatientAdded = patientDao.savePatient(patientEntity, con);
 
         int locationX = patientDto.getLocationX();
-        System.out.println(locationX);
         int locationY = patientDto.getLocationY();
         double minimumDistance=0.0;
         String finalHid= "";
         String finalHname="";
         int queueNo=0;
-
         ArrayList<Hospital> hospitalDetails = new ArrayList<>();
 
         ArrayList<String> hospitals = patientDao.BedsAvailableHospitals(con);
@@ -47,7 +45,6 @@ public class PatientServiceImpl implements PatientService {
             }
             for (Hospital hospital:hospitalDetails) {
                 System.out.println(hospital.getName());
-                //double distance = ((hospital.getLocation_x() - locationX) ^ 2 + (hospital.getLocation_y() - locationY) ^ 2) ^ (1/2);
                 double distance = Math.sqrt((hospital.getLocation_x() - locationX) * (hospital.getLocation_x() - locationX) +
                         (hospital.getLocation_y() - locationY) * (hospital.getLocation_y() - locationY));
                 System.out.println(distance);

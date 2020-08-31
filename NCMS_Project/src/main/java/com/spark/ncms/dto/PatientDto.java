@@ -9,13 +9,20 @@ import lombok.*;
 @ToString
 public class PatientDto {
 
+     private String patientId;
      private String firstName;
      private String lastName;
-     private int age;
+     private String district;
      private int locationX;
      private int locationY;
-     private String district;
+     private String severityLevel;
      private String gender;
      private String contactNo;
      private String email;
+     private int age;
+     private String admitDate;
+     private String admittedBy;
+     private String dischargedDate;
+     private String dischargedBy;
+
 }
