@@ -108,5 +108,19 @@ public class PatientDaoImpl implements com.spark.ncms.dao.PatientDao {
         return 0;
     }
 
+    @Override
+    public Patient getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException {
+        PreparedStatement pstm = con.prepareStatement("select * from patient where id=?");
+        pstm.setObject(1, patientId);
+        ResultSet rst = pstm.executeQuery();
+        if(rst.next()){
+            return new Patient(rst.getString(1), rst.getString(2), rst.getString(3),
+                    rst.getString(4), rst.getInt(5), rst.getInt(6), rst.getString(7),
+                    rst.getString(8),rst.getString(9), rst.getString(10), rst.getInt(11),
+                    rst.getString(12), rst.getString(13), rst.getString(14), rst.getString(15));
+        }
+        return null;
+    }
+
 
 }

@@ -2,7 +2,6 @@ package com.spark.ncms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spark.ncms.dto.PatientDto;
-import com.spark.ncms.listners.XBasicDataSource;
 import com.spark.ncms.response.HospitaBedResponse;
 import com.spark.ncms.response.PatientResponse;
 import com.spark.ncms.response.StandardResponse;
@@ -29,7 +28,7 @@ public class DoctorController extends HttpServlet {
         String doctorId = req.getParameter("doctorId");
 
         try {
-            BasicDataSource bds = (XBasicDataSource) getServletContext().getAttribute("db");
+            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try(Connection con = bds.getConnection()) {
                 HospitaBedResponse hospitaBedResponse = doctorService.getHospitalBedList(doctorId, con);
                 ObjectMapper mapper = new ObjectMapper();
@@ -56,21 +55,34 @@ public class DoctorController extends HttpServlet {
 
     }
 
+
+    //patient admittedby and dischargedby update method
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String patientId = req.getParameter("patientId");
+        String doctorId = req.getParameter("doctorId");
+        String doctorRole = req.getParameter("doctorRole"); //addmit or discharged
 
         try {
-            BasicDataSource bds = (XBasicDataSource) getServletContext().getAttribute("db");
+            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try(Connection con = bds.getConnection()) {
-                PatientDto patient = doctorService.getPatient(patientId, con);
+                boolean isUpdated = doctorService.updatePatient(patientId, doctorId, doctorRole, con);
                 ObjectMapper mapper = new ObjectMapper();
-                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patient ));
-                PrintWriter out = resp.getWriter();
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                out.print(responseJson);
-                out.flush();
+                if(isUpdated){
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "patient is updated" ));
+                    PrintWriter out = resp.getWriter();
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("UTF-8");
+                    out.print(responseJson);
+                    out.flush();
+                }else if(!isUpdated){
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "patient is not updated" ));
+                    PrintWriter out = resp.getWriter();
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("UTF-8");
+                    out.print(responseJson);
+                    out.flush();
+                }
             }
 
         }catch (Exception e){
@@ -86,42 +98,6 @@ public class DoctorController extends HttpServlet {
 
         }
 
-
     }
 
-    //patient admittedby and dischargedby update method
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String patientId = req.getParameter("patientId");
-        String doctorId = req.getParameter("doctorId");
-        String doctorRole = req.getParameter("doctorRole"); //addmit or discharged
-
-        try {
-            BasicDataSource bds = (XBasicDataSource) getServletContext().getAttribute("db");
-            try(Connection con = bds.getConnection()) {
-                boolean isUpdated = doctorService.updatePatient(patientId, doctorId, doctorRole, con);
-                ObjectMapper mapper = new ObjectMapper();
-                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "patient is updated",isUpdated ));
-                PrintWriter out = resp.getWriter();
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                out.print(responseJson);
-                out.flush();
-            }
-
-        }catch (Exception e){
-            ObjectMapper mapper = new ObjectMapper();
-            String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "patient is not updated"));
-            PrintWriter out = resp.getWriter();
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            out.print(responseJson);
-            out.flush();
-
-            e.printStackTrace();
-
-        }
-
-
-    }
 }

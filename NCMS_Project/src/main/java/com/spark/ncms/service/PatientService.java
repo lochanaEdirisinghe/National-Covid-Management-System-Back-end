@@ -9,4 +9,5 @@ import java.sql.SQLException;
 
 public interface PatientService {
     PatientResponse savePatient(PatientDto patientDto, Connection con) throws SQLException, SQLException, ClassNotFoundException;
+    PatientDto getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException;
 }

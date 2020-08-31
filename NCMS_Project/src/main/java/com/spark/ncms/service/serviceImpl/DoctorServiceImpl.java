@@ -32,19 +32,23 @@ public class DoctorServiceImpl implements DoctorService {
         return new HospitaBedResponse(hospitalId, null);
     }
 
-    @Override
-    public PatientDto getPatient(String patientId, Connection con)throws SQLException, ClassNotFoundException {
-        Patient patient = doctorDao.getPatient(patientId, con);
-        return new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(),patient.getDistrict(),  patient.getLocationX(),
-                patient.getLocationY(),patient.getSeverity_level(), patient.getGender(), patient.getContact(), patient.getEmail(),patient.getAge(),
-                patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by());
-    }
 
     @Override
     public boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException{
-        boolean isUpdated = doctorDao.updatePatient(patientId, doctorId, doctorRole, con);
-        return isUpdated;
-    }
+        if(doctorRole.equals("admit")){
+            boolean isUpdated = doctorDao.updatePatient(patientId, doctorId, doctorRole, con);
+            return isUpdated;
+        }else if(doctorRole.equals("discharge")){
+            boolean isUpdatedPatient = doctorDao.updatePatient(patientId, doctorId, doctorRole, con);
+            boolean isUpdatedHosBed = doctorDao.updateHospitalBed(patientId, con);
+            if(isUpdatedPatient==true &&isUpdatedHosBed==true){
+                return true;
+            }else {
+                return false;
+            }
 
+        }
+        return false;
+    }
 
 }

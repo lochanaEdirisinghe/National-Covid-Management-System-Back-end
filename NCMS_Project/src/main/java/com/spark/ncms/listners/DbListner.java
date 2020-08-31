@@ -11,8 +11,8 @@ public class DbListner implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        BasicDataSource bds = new XBasicDataSource();
-        bds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        BasicDataSource bds = new BasicDataSource();
+        bds.setDriverClassName("com.mysql.jdbc.Driver");
         bds.setUrl("jdbc:mysql://localhost:3306/ncms");
         bds.setUsername("root");
         bds.setPassword("ijse");

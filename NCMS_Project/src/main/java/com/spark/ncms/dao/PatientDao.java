@@ -16,5 +16,6 @@ public interface PatientDao {
     int getBedId(String hospitalId, Connection con) throws SQLException, ClassNotFoundException;
     boolean addToQueue(String patientId, Connection con) throws SQLException, ClassNotFoundException;
     int getQueueNo(String patientId, Connection con) throws SQLException, ClassNotFoundException;
+    Patient getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException;
 
 }

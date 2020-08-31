@@ -40,27 +40,15 @@ public class DoctorDaoImpl implements DoctorDao {
         return null;
     }
 
-    @Override
-    public Patient getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException {
-        PreparedStatement pstm = con.prepareStatement("select * from patient where id=?");
-        pstm.setObject(1, patientId);
-        ResultSet rst = pstm.executeQuery();
-        if(rst.next()){
-            return new Patient(rst.getString(1), rst.getString(2), rst.getString(3),
-                    rst.getString(4), rst.getInt(5), rst.getInt(6), rst.getString(7),
-                    rst.getString(8),rst.getString(9), rst.getString(10), rst.getInt(11),
-                    rst.getString(12), rst.getString(13), rst.getString(14), rst.getString(15));
-        }
-        return null;
-    }
+
 
     @Override
     public boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException {
         Calendar calendar = Calendar.getInstance();
         java.util.Date currentDate = calendar.getTime();
         java.sql.Date date = new java.sql.Date(currentDate.getTime());
-        if(doctorRole=="admit"){
-            PreparedStatement pstm = con.prepareStatement("update patient set addmitted_by=?, admit_date=? where id=?");
+        if(doctorRole.equals("admit")){
+            PreparedStatement pstm = con.prepareStatement("update patient set admitted_by=?, admit_date=? where id=?");
             pstm.setObject(1, doctorId );
             pstm.setObject(2, date);
             pstm.setObject(3, patientId);
@@ -69,7 +57,7 @@ public class DoctorDaoImpl implements DoctorDao {
                 return true;
             }
             return false;
-        }else if(doctorRole=="discharge"){
+        }else if(doctorRole.equals("discharge")){
             PreparedStatement pstm = con.prepareStatement("update patient set discharged_by=?, discharge_date=? where id=?");
             pstm.setObject(1, doctorId );
             pstm.setObject(2, date);
@@ -84,5 +72,16 @@ public class DoctorDaoImpl implements DoctorDao {
 
     }
 
+    @Override
+    public boolean updateHospitalBed(String patientId, Connection con)throws SQLException, ClassNotFoundException  {
+        PreparedStatement pstm = con.prepareStatement("update hospital_bed set patient_id=? where patient_id=?");
+        pstm.setObject(1, null);
+        pstm.setObject(2, patientId);
+        int i = pstm.executeUpdate();
+        if(i>0){
+            return true;
+        }
+        return false;
+    }
 
 }

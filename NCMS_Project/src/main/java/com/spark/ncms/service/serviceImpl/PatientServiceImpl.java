@@ -78,6 +78,14 @@ public class PatientServiceImpl implements PatientService {
 
     }
 
+    @Override
+    public PatientDto getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException {
+        Patient patient = patientDao.getPatient(patientId, con);
+        return new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(),patient.getDistrict(),  patient.getLocationX(),
+                patient.getLocationY(),patient.getSeverity_level(), patient.getGender(), patient.getContact(), patient.getEmail(),patient.getAge(),
+                patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by());
+    }
+
 
     public String idGenerator(String firstName){
         StringBuilder sb = new StringBuilder();
