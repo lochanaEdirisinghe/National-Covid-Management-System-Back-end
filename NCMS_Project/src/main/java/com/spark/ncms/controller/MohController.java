@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spark.ncms.dto.HospitalDto;
 import com.spark.ncms.dto.QueueDto;
 import com.spark.ncms.response.StandardResponse;
-import com.spark.ncms.service.MohService;
-import com.spark.ncms.service.serviceImpl.MohServiceImpl;
+import com.spark.ncms.service.ServiceFactory;
+import com.spark.ncms.service.ServiceType;
+import com.spark.ncms.service.custom.MohService;
+import com.spark.ncms.service.custom.impl.MohServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.json.Json;
@@ -25,7 +27,11 @@ import java.util.List;
 @WebServlet(urlPatterns = "/api/v1/moh")
 public class MohController extends HttpServlet {
 
-    MohService mohService = new MohServiceImpl();
+    private MohService mohService;
+
+    public MohController(){
+        mohService=ServiceFactory.getInstance().getService(ServiceType.MOH);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

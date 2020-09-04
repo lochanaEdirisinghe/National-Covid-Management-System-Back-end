@@ -1,12 +1,12 @@
 package com.spark.ncms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spark.ncms.dto.PatientDto;
 import com.spark.ncms.response.HospitaBedResponse;
-import com.spark.ncms.response.PatientResponse;
 import com.spark.ncms.response.StandardResponse;
-import com.spark.ncms.service.DoctorService;
-import com.spark.ncms.service.serviceImpl.DoctorServiceImpl;
+import com.spark.ncms.service.ServiceFactory;
+import com.spark.ncms.service.ServiceType;
+import com.spark.ncms.service.custom.DoctorService;
+import com.spark.ncms.service.custom.impl.DoctorServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.servlet.ServletException;
@@ -21,7 +21,11 @@ import java.sql.Connection;
 @WebServlet(urlPatterns = "/api/v1/Doctor/*")
 public class DoctorController extends HttpServlet {
 
-    DoctorService doctorService= new DoctorServiceImpl();
+    private DoctorService doctorService;
+
+    public DoctorController(){
+        doctorService=ServiceFactory.getInstance().getService(ServiceType.DOCTOR);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
