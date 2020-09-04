@@ -6,7 +6,6 @@ import com.spark.ncms.response.StandardResponse;
 import com.spark.ncms.service.ServiceFactory;
 import com.spark.ncms.service.ServiceType;
 import com.spark.ncms.service.custom.DoctorService;
-import com.spark.ncms.service.custom.impl.DoctorServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.servlet.ServletException;
@@ -18,7 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 
-@WebServlet(urlPatterns = "/api/v1/Doctor/*")
+@WebServlet(urlPatterns = "/api/v1/doctor")
 public class DoctorController extends HttpServlet {
 
     private DoctorService doctorService;
@@ -60,7 +59,6 @@ public class DoctorController extends HttpServlet {
         }
 
     }
-
 
     //patient admittedby and dischargedby update method
     @Override

@@ -1,13 +1,14 @@
 package com.spark.ncms.service.custom.impl;
 
+import com.spark.ncms.entity.Patient;
 import com.spark.ncms.repository.RepoFactory;
 import com.spark.ncms.repository.RepoType;
 import com.spark.ncms.repository.custom.DoctorRepository;
 import com.spark.ncms.repository.custom.HospitalBedRepository;
 import com.spark.ncms.repository.custom.PatientRepository;
-import com.spark.ncms.dto.HospitalBedDto;
 import com.spark.ncms.entity.HospitalBed;
 import com.spark.ncms.response.HospitaBedResponse;
+import com.spark.ncms.response.HospitalBedRespDto;
 import com.spark.ncms.service.custom.DoctorService;
 
 import java.sql.Connection;
@@ -29,12 +30,13 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public HospitaBedResponse getHospitalBedList(String doctorId, Connection con) throws SQLException, ClassNotFoundException{
-        List<HospitalBedDto> bedList = new ArrayList<>();
+        List<HospitalBedRespDto> bedList = new ArrayList<>();
         String hospitalId = doctorRepo.getHospitalId(doctorId, con);
         System.out.println(hospitalId);
         List<HospitalBed> hospitalBedList = hospitalBedRepo.getHospitalBedList(hospitalId, con);
         for (HospitalBed hospitalBed: hospitalBedList) {
-            bedList.add(new HospitalBedDto(hospitalBed.getBedId(), hospitalBed.getPatientId()));
+            Patient patient = patientRepo.getPatient(hospitalBed.getPatientId(), con);
+            bedList.add(new HospitalBedRespDto(hospitalBed.getBedId(), hospitalBed.getPatientId(), patient.getAdmitted_by()!=null, patient.getDischarged_by()!=null));
         }
         if(!bedList.isEmpty()) {
             return new HospitaBedResponse(hospitalId, bedList);
@@ -56,7 +58,6 @@ public class DoctorServiceImpl implements DoctorService {
             }else {
                 return false;
             }
-
         }
         return false;
     }

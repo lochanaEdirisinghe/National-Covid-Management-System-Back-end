@@ -7,7 +7,6 @@ import com.spark.ncms.response.StandardResponse;
 import com.spark.ncms.service.ServiceFactory;
 import com.spark.ncms.service.ServiceType;
 import com.spark.ncms.service.custom.MohService;
-import com.spark.ncms.service.custom.impl.MohServiceImpl;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.json.Json;
@@ -24,7 +23,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/api/v1/moh")
+@WebServlet(urlPatterns = "/api/v1/moh/*")
 public class MohController extends HttpServlet {
 
     private MohService mohService;
