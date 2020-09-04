@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface MohService {
-    List<QueueDto> getQueuePatients(Connection con) throws SQLException, ClassNotFoundException;
-
+    List<QueueDto> getQueueDetails(Connection con) throws SQLException, ClassNotFoundException;
     boolean addNewHospital(HospitalDto hospitalDto, Connection con) throws SQLException, ClassNotFoundException;
 }

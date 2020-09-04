@@ -1,7 +1,8 @@
 package com.spark.ncms.service.serviceImpl;
 
-import com.spark.ncms.dao.MohDao;
-import com.spark.ncms.dao.daoImpl.MohDaoImpl;
+import com.spark.ncms.repository.RepoFactory;
+import com.spark.ncms.repository.RepoType;
+import com.spark.ncms.repository.custom.*;
 import com.spark.ncms.dto.HospitalDto;
 import com.spark.ncms.dto.QueueDto;
 import com.spark.ncms.entity.Hospital;
@@ -15,12 +16,19 @@ import java.util.List;
 
 public class MohServiceImpl implements MohService {
 
-    MohDao mohDao = new MohDaoImpl();
+    QueueRepository queueRepo;
+    HospitalRepository hospitalRepo;
+
+    public MohServiceImpl(){
+        queueRepo = RepoFactory.getInstance().getRepo(RepoType.PATIENT_QUEUE);
+        hospitalRepo = RepoFactory.getInstance().getRepo(RepoType.HOSPITAL);
+
+    }
 
     @Override
-    public List<QueueDto> getQueuePatients(Connection con)throws SQLException, ClassNotFoundException {
+    public List<QueueDto> getQueueDetails(Connection con)throws SQLException, ClassNotFoundException {
         List<QueueDto>  queueList = new ArrayList<>();
-        List<PatientQueue> queuePatients = mohDao.getQueuePatients(con);
+        List<PatientQueue> queuePatients = queueRepo.getQueuePatients(con);
         for (PatientQueue patientQueue: queuePatients) {
             queueList.add(new QueueDto(patientQueue.getQueueId(), patientQueue.getPatientId()));
         }
@@ -30,7 +38,7 @@ public class MohServiceImpl implements MohService {
     @Override
     public boolean addNewHospital(HospitalDto hospitalDto, Connection con)throws SQLException, ClassNotFoundException {
         Hospital hospital = new Hospital(hospitalDto.getId(), hospitalDto.getName(), hospitalDto.getDistrict(), hospitalDto.getLocationX(), hospitalDto.getLocationY());
-        boolean isAdded = mohDao.addNewHospital(hospital, con);
+        boolean isAdded = hospitalRepo.addNewHospital(hospital, con);
         return isAdded;
     }
 }

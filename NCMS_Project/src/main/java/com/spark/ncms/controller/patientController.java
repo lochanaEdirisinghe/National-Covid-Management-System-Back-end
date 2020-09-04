@@ -2,7 +2,6 @@ package com.spark.ncms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spark.ncms.dto.PatientDto;
-import com.spark.ncms.listners.XBasicDataSource;
 import com.spark.ncms.service.PatientService;
 import com.spark.ncms.service.serviceImpl.PatientServiceImpl;
 import com.spark.ncms.response.PatientResponse;
@@ -21,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.List;
 
-@WebServlet(urlPatterns = "/api/v1/patient")
+@WebServlet(urlPatterns = "/api/v1/patient/*")
 public class patientController extends HttpServlet {
     PatientService patientService= new PatientServiceImpl();
     @Override
@@ -61,7 +61,6 @@ public class patientController extends HttpServlet {
             try(Connection con = bds.getConnection()) {
                 PatientResponse patientResponse = patientService.savePatient(patientDto, con);
                 ObjectMapper mapper = new ObjectMapper();
-               // String patientJson = mapper.writeValueAsString(patientResponse);
                 String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patientResponse));
                 PrintWriter out = resp.getWriter();
                 resp.setContentType("application/json");
@@ -88,14 +87,42 @@ public class patientController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String patientId = req.getParameter("patientId");
 
+        if(!req.getPathInfo().equals("/")){
+            String patientId = req.getParameter("patientId");
+            try {
+                BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+                try(Connection con = bds.getConnection()) {
+                    PatientDto patient = patientService.getPatient(patientId, con);
+                    ObjectMapper mapper = new ObjectMapper();
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patient ));
+                    PrintWriter out = resp.getWriter();
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("UTF-8");
+                    out.print(responseJson);
+                    out.flush();
+                }
+
+            }catch (Exception e){
+                ObjectMapper mapper = new ObjectMapper();
+                String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                PrintWriter out = resp.getWriter();
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                out.print(responseJson);
+                out.flush();
+
+                e.printStackTrace();
+
+            }
+        }
+        String patientId = req.getParameter("patientId");
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try(Connection con = bds.getConnection()) {
-                PatientDto patient = patientService.getPatient(patientId, con);
+                List<PatientDto> patients = patientService.getAllPatient(con);
                 ObjectMapper mapper = new ObjectMapper();
-                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patient ));
+                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patients ));
                 PrintWriter out = resp.getWriter();
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");

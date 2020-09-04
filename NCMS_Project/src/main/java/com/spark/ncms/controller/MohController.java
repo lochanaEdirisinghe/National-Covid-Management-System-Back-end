@@ -32,7 +32,7 @@ public class MohController extends HttpServlet {
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try(Connection con = bds.getConnection()) {
-                List<QueueDto> queuePatients = mohService.getQueuePatients(con);
+                List<QueueDto> queuePatients = mohService.getQueueDetails(con);
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", queuePatients ));
                 PrintWriter out = resp.getWriter();

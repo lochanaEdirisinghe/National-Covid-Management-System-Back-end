@@ -1,11 +1,12 @@
 package com.spark.ncms.service.serviceImpl;
 
-import com.spark.ncms.dao.DoctorDao;
-import com.spark.ncms.dao.daoImpl.DoctorDaoImpl;
+import com.spark.ncms.repository.RepoFactory;
+import com.spark.ncms.repository.RepoType;
+import com.spark.ncms.repository.custom.DoctorRepository;
+import com.spark.ncms.repository.custom.HospitalBedRepository;
+import com.spark.ncms.repository.custom.PatientRepository;
 import com.spark.ncms.dto.HospitalBedDto;
-import com.spark.ncms.dto.PatientDto;
 import com.spark.ncms.entity.HospitalBed;
-import com.spark.ncms.entity.Patient;
 import com.spark.ncms.response.HospitaBedResponse;
 import com.spark.ncms.service.DoctorService;
 
@@ -16,13 +17,22 @@ import java.util.List;
 
 public class DoctorServiceImpl implements DoctorService {
 
-    DoctorDao doctorDao = new DoctorDaoImpl();
+    private DoctorRepository doctorRepo;
+    private HospitalBedRepository hospitalBedRepo;
+    private PatientRepository patientRepo;
+
+    public DoctorServiceImpl(){
+        doctorRepo = RepoFactory.getInstance().getRepo(RepoType.DOCTOR);
+        hospitalBedRepo = RepoFactory.getInstance().getRepo(RepoType.HOSPITAL_BED);
+        patientRepo = RepoFactory.getInstance().getRepo(RepoType.PATIENT);
+    }
+
     @Override
     public HospitaBedResponse getHospitalBedList(String doctorId, Connection con) throws SQLException, ClassNotFoundException{
         List<HospitalBedDto> bedList = new ArrayList<>();
-        String hospitalId = doctorDao.getHospitalId(doctorId, con);
+        String hospitalId = doctorRepo.getHospitalId(doctorId, con);
         System.out.println(hospitalId);
-        List<HospitalBed> hospitalBedList = doctorDao.getHospitalBedList(hospitalId, con);
+        List<HospitalBed> hospitalBedList = hospitalBedRepo.getHospitalBedList(hospitalId, con);
         for (HospitalBed hospitalBed: hospitalBedList) {
             bedList.add(new HospitalBedDto(hospitalBed.getBedId(), hospitalBed.getPatientId()));
         }
@@ -36,11 +46,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException{
         if(doctorRole.equals("admit")){
-            boolean isUpdated = doctorDao.updatePatient(patientId, doctorId, doctorRole, con);
+            boolean isUpdated = patientRepo.updatePatient(patientId, doctorId, doctorRole, con);
             return isUpdated;
         }else if(doctorRole.equals("discharge")){
-            boolean isUpdatedPatient = doctorDao.updatePatient(patientId, doctorId, doctorRole, con);
-            boolean isUpdatedHosBed = doctorDao.updateHospitalBed(patientId, con);
+            boolean isUpdatedPatient = patientRepo.updatePatient(patientId, doctorId, doctorRole, con);
+            boolean isUpdatedHosBed = hospitalBedRepo.updateHospitalBed(patientId, con);
             if(isUpdatedPatient==true &&isUpdatedHosBed==true){
                 return true;
             }else {

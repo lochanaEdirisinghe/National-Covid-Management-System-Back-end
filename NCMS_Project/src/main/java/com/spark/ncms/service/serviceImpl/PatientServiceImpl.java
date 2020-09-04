@@ -1,24 +1,36 @@
 package com.spark.ncms.service.serviceImpl;
 
-import com.spark.ncms.dao.PatientDao;
-import com.spark.ncms.dao.daoImpl.PatientDaoImpl;
+import com.spark.ncms.repository.RepoFactory;
+import com.spark.ncms.repository.RepoType;
+import com.spark.ncms.repository.custom.HospitalBedRepository;
+import com.spark.ncms.repository.custom.HospitalRepository;
+import com.spark.ncms.repository.custom.PatientRepository;
+import com.spark.ncms.repository.custom.QueueRepository;
 import com.spark.ncms.dto.PatientDto;
 import com.spark.ncms.entity.Hospital;
 import com.spark.ncms.entity.Patient;
 import com.spark.ncms.service.PatientService;
 import com.spark.ncms.response.PatientResponse;
-import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-
-import static java.lang.Math.abs;
 
 public class PatientServiceImpl implements PatientService {
 
-    private PatientDao patientDao = new PatientDaoImpl();
+    private HospitalRepository hospitalRepo;
+    private QueueRepository queueRepo;
+    private HospitalBedRepository hospitalBedRepo;
+    private PatientRepository patientRepo;
+
+    public PatientServiceImpl(){
+        hospitalRepo = RepoFactory.getInstance().getRepo(RepoType.HOSPITAL);
+        queueRepo = RepoFactory.getInstance().getRepo(RepoType.PATIENT_QUEUE);
+        hospitalBedRepo = RepoFactory.getInstance().getRepo(RepoType.HOSPITAL_BED);
+        patientRepo = RepoFactory.getInstance().getRepo(RepoType.PATIENT);
+    }
 
     @Override
     public PatientResponse savePatient(PatientDto patientDto, Connection con) throws SQLException, ClassNotFoundException {
@@ -28,7 +40,7 @@ public class PatientServiceImpl implements PatientService {
                 patientDto.getLocationX(), patientDto.getLocationY(), null, patientDto.getGender(), patientDto.getContactNo(),
                 patientDto.getEmail(), patientDto.getAge(), null, null, null, null);
 
-        boolean isPatientAdded = patientDao.savePatient(patientEntity, con);
+        boolean isPatientAdded = patientRepo.savePatient(patientEntity, con);
 
         int locationX = patientDto.getLocationX();
         int locationY = patientDto.getLocationY();
@@ -38,10 +50,10 @@ public class PatientServiceImpl implements PatientService {
         int queueNo=0;
         ArrayList<Hospital> hospitalDetails = new ArrayList<>();
 
-        ArrayList<String> hospitals = patientDao.BedsAvailableHospitals(con);
+        List<String> hospitals = hospitalBedRepo.BedsAvailableHospitals(con);
         if(!hospitals.isEmpty()){
             for (String Hid:hospitals) {
-                hospitalDetails.add(patientDao.getHospital(Hid, con));
+                hospitalDetails.add(hospitalRepo.getHospital(Hid, con));
             }
             for (Hospital hospital:hospitalDetails) {
                 System.out.println(hospital.getName());
@@ -63,15 +75,15 @@ public class PatientServiceImpl implements PatientService {
 
             }
 
-            int bedId = patientDao.getBedId(finalHid, con);
-            boolean isBedUpdated = patientDao.patientBedUpdate(finalHid, bedId, patientId, con);
+            int bedId = hospitalBedRepo.getBedId(finalHid, con);
+            boolean isBedUpdated = hospitalBedRepo.patientBedUpdate(finalHid, bedId, patientId, con);
 
             return new PatientResponse(patientId, bedId,finalHname, 0);
 
         }
-        boolean addedToQueue = patientDao.addToQueue(patientId, con);
+        boolean addedToQueue = queueRepo.addToQueue(patientId, con);
         if (addedToQueue){
-            queueNo = patientDao.getQueueNo(patientId, con);
+            queueNo = queueRepo.getQueueNo(patientId, con);
         }
 
         return new PatientResponse(patientId, 0,finalHname, queueNo);
@@ -80,10 +92,22 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDto getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException {
-        Patient patient = patientDao.getPatient(patientId, con);
+        Patient patient = patientRepo.getPatient(patientId, con);
         return new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(),patient.getDistrict(),  patient.getLocationX(),
                 patient.getLocationY(),patient.getSeverity_level(), patient.getGender(), patient.getContact(), patient.getEmail(),patient.getAge(),
                 patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by());
+    }
+
+    @Override
+    public List<PatientDto> getAllPatient(Connection con) throws SQLException, ClassNotFoundException{
+        List<PatientDto> allpatients = new ArrayList<>();
+        List<Patient> allPatient = patientRepo.getAllPatient(con);
+        for (Patient patient : allPatient ) {
+             allpatients.add(new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(),patient.getDistrict(),  patient.getLocationX(),
+                    patient.getLocationY(),patient.getSeverity_level(), patient.getGender(), patient.getContact(), patient.getEmail(),patient.getAge(),
+                    patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by()));
+        }
+        return allpatients;
     }
 
 

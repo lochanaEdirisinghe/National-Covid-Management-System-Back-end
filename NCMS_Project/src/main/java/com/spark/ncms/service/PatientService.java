@@ -6,8 +6,10 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface PatientService {
     PatientResponse savePatient(PatientDto patientDto, Connection con) throws SQLException, SQLException, ClassNotFoundException;
     PatientDto getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException;
+    List<PatientDto> getAllPatient(Connection con) throws SQLException, ClassNotFoundException;
 }

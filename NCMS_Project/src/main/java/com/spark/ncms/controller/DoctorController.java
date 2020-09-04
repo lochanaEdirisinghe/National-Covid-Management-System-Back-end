@@ -18,13 +18,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 
-@WebServlet(urlPatterns = "/api/v1/hospital")
+@WebServlet(urlPatterns = "/api/v1/Doctor/*")
 public class DoctorController extends HttpServlet {
 
     DoctorService doctorService= new DoctorServiceImpl();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        System.out.println(req.getPathInfo());
         String doctorId = req.getParameter("doctorId");
 
         try {
