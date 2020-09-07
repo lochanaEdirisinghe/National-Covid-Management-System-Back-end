@@ -1,6 +1,7 @@
 package com.spark.ncms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spark.ncms.dto.HospitalBedDto;
 import com.spark.ncms.dto.HospitalDto;
 import com.spark.ncms.dto.QueueDto;
 import com.spark.ncms.response.StandardResponse;
@@ -34,31 +35,70 @@ public class MohController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
-            try(Connection con = bds.getConnection()) {
-                List<QueueDto> queuePatients = mohService.getQueueDetails(con);
-                ObjectMapper mapper = new ObjectMapper();
-                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", queuePatients ));
-                PrintWriter out = resp.getWriter();
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                out.print(responseJson);
-                out.flush();
-            }
 
-        }catch (Exception e){
-            ObjectMapper mapper = new ObjectMapper();
-            String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-            PrintWriter out = resp.getWriter();
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            out.print(responseJson);
-            out.flush();
+        switch (req.getPathInfo()){
 
-            e.printStackTrace();
+            case "/queue":
+
+                try {
+                    BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+                    try(Connection con = bds.getConnection()) {
+                        List<QueueDto> queuePatients = mohService.getQueueDetails(con);
+                        ObjectMapper mapper = new ObjectMapper();
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", queuePatients ));
+                        PrintWriter out = resp.getWriter();
+                        resp.setContentType("application/json");
+                        resp.setCharacterEncoding("UTF-8");
+                        out.print(responseJson);
+                        out.flush();
+                    }
+
+                }catch (Exception e){
+                    ObjectMapper mapper = new ObjectMapper();
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                    PrintWriter out = resp.getWriter();
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("UTF-8");
+                    out.print(responseJson);
+                    out.flush();
+
+                    e.printStackTrace();
+
+                }
+
+                break;
+
+            case "/beds":
+
+                try {
+                    BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+                    try(Connection con = bds.getConnection()) {
+                        List<HospitalBedDto> bedDetails = mohService.getBedDetails(con);
+                        ObjectMapper mapper = new ObjectMapper();
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedDetails ));
+                        PrintWriter out = resp.getWriter();
+                        resp.setContentType("application/json");
+                        resp.setCharacterEncoding("UTF-8");
+                        out.print(responseJson);
+                        out.flush();
+                    }
+
+                }catch (Exception e){
+                    ObjectMapper mapper = new ObjectMapper();
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                    PrintWriter out = resp.getWriter();
+                    resp.setContentType("application/json");
+                    resp.setCharacterEncoding("UTF-8");
+                    out.print(responseJson);
+                    out.flush();
+
+                    e.printStackTrace();
+
+                }
 
         }
+
+
 
     }
 

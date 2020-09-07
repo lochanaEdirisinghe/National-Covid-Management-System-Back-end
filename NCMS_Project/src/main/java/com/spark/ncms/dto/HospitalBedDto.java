@@ -9,5 +9,6 @@ import lombok.*;
 @ToString
 public class HospitalBedDto {
     private int bedId;
+    private String hospitalId;
     private String patientId;
 }

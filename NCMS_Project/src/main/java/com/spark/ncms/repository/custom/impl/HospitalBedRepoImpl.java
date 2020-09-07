@@ -39,6 +39,20 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
     }
 
     @Override
+    public List<HospitalBed> getBedList(Connection con) throws SQLException, ClassNotFoundException {
+        List<HospitalBed> hospital_beds = new ArrayList<>();
+        PreparedStatement pstm = con.prepareStatement("select * from hospital_bed");
+        ResultSet rst = pstm.executeQuery();
+        if(rst.next()){
+            while (rst.next()){
+                hospital_beds.add(new HospitalBed(rst.getInt(1), rst.getString(2), rst.getString(3)));
+            }
+            return hospital_beds;
+        }
+        return null;
+    }
+
+    @Override
     public boolean updateHospitalBed(String patientId, Connection con) throws SQLException, ClassNotFoundException {
         PreparedStatement pstm = con.prepareStatement("update hospital_bed set patient_id=? where patient_id=?");
         pstm.setObject(1, null);

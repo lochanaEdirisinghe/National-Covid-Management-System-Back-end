@@ -27,6 +27,8 @@ public class RepoFactory {
                 return (T)new HospitalBedRepoImpl();
             case PATIENT_QUEUE:
                 return (T)new QueueRepoImpl();
+            case USER:
+                return (T)new AuthRepoImpl();
             default:
                 return null;
         }

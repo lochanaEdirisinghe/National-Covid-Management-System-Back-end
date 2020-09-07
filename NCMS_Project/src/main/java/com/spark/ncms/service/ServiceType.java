@@ -1,5 +1,5 @@
 package com.spark.ncms.service;
 
 public enum ServiceType {
-    PATIENT, DOCTOR, MOH
+    PATIENT, DOCTOR, MOH, USER
 }
