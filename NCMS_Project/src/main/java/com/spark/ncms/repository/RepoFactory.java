@@ -3,16 +3,16 @@ package com.spark.ncms.repository;
 import com.spark.ncms.repository.custom.impl.*;
 
 public class RepoFactory {
-    private static RepoFactory daoFactory;
+    private static RepoFactory repoFactory;
 
     private RepoFactory(){
 
     }
     public static RepoFactory getInstance(){
-        if (null==daoFactory){
-            daoFactory= new RepoFactory();
+        if (null==repoFactory){
+            repoFactory= new RepoFactory();
         }
-        return daoFactory;
+        return repoFactory;
     }
 
     public <T> T getRepo(RepoType type){

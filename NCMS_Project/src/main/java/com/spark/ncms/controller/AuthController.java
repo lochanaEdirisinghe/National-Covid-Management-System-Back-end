@@ -17,9 +17,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
+
 
 @WebServlet(urlPatterns = "/api/v1/auth/login")
 public class AuthController extends HttpServlet {
@@ -27,15 +28,14 @@ public class AuthController extends HttpServlet {
 
     private AuthService authService;
 
-    public AuthController(){
-        authService= ServiceFactory.getInstance().getService(ServiceType.USER);
+    public AuthController() {
+        authService = ServiceFactory.getInstance().getService(ServiceType.USER);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ServletInputStream inputStream = req.getInputStream();
-        JsonReader reader = Json.createReader(inputStream);
-        JsonObject jsonObject = reader.readObject();
+        JsonObject jsonObject = CommonMethods.getJsonObject(req);
+        ObjectMapper mapper = new ObjectMapper();
 
         String username = jsonObject.getString("username");
         String password = jsonObject.getString("password");
@@ -46,35 +46,23 @@ public class AuthController extends HttpServlet {
                 String role = authService.userCheck(username, password, con);
                 if (role != null) {
                     req.getSession().setAttribute("role", role);
-                    ObjectMapper mapper = new ObjectMapper();
                     String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", role));
-                    PrintWriter out = resp.getWriter();
-                    resp.setContentType("application/json");
-                    resp.setCharacterEncoding("UTF-8");
-                    out.print(responseJson);
-                    out.flush();
+                    CommonMethods.responseProcess(resp, responseJson);
                 } else {
-                    ObjectMapper mapper = new ObjectMapper();
                     String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "not allowed"));
-                    PrintWriter out = resp.getWriter();
-                    resp.setContentType("application/json");
-                    resp.setCharacterEncoding("UTF-8");
-                    out.print(responseJson);
-                    out.flush();
+                    CommonMethods.responseProcess(resp, responseJson);
 
                 }
 
             }
-        }catch (Exception e) {
-                ObjectMapper mapper = new ObjectMapper();
-                String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                PrintWriter out = resp.getWriter();
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                out.print(responseJson);
-                out.flush();
-                e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
+            return;
 
-            }
+
         }
+    }
+
+
 }

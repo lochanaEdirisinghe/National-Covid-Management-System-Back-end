@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface QueueRepository {
+public interface QueueRepository extends SuperRepository {
     boolean addToQueue(String patientId, Connection con) throws SQLException, ClassNotFoundException;
     int getQueueNo(String patientId, Connection con) throws SQLException, ClassNotFoundException;
     List<PatientQueue> getQueuePatients(Connection con) throws SQLException, ClassNotFoundException;

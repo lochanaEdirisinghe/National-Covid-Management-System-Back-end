@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="TestNgMavenExampleSuite" parallel="false">
+    <test name="TestNgMavenTest">
+        <classes>
+            <class name="com.spark.ncms.test.PatientServiceImplTest"/>
+            <class name="com.spark.ncms.test.DoctorServiceImplTest"/>
+        </classes>
+    </test>
+</suite>

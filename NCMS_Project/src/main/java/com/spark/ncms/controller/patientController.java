@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.List;
 
@@ -28,16 +27,14 @@ public class patientController extends HttpServlet {
 
     private PatientService patientService;
 
-    public patientController(){
-        patientService=ServiceFactory.getInstance().getService(ServiceType.PATIENT);
+    public patientController() {
+        patientService = ServiceFactory.getInstance().getService(ServiceType.PATIENT);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ServletInputStream inputStream = req.getInputStream();
-        JsonReader reader = Json.createReader(inputStream);
-        JsonObject jsonObject = reader.readObject();
+        JsonObject jsonObject = CommonMethods.getJsonObject(req);
 
         String firstName = jsonObject.getString("firstName");
         String lastName = jsonObject.getString("lastName");
@@ -65,31 +62,22 @@ public class patientController extends HttpServlet {
 
         try {
 
-            try(Connection con = bds.getConnection()) {
+            try (Connection con = bds.getConnection()) {
                 PatientResponse patientResponse = patientService.savePatient(patientDto, con);
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patientResponse));
-                PrintWriter out = resp.getWriter();
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                out.print(responseJson);
-                out.flush();
+                CommonMethods.responseProcess(resp, responseJson);
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             ObjectMapper mapper = new ObjectMapper();
-            String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-            PrintWriter out = resp.getWriter();
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            out.print(responseJson);
-            out.flush();
-
+            /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+            CommonMethods.responseProcess(resp, responseJson);*/
             e.printStackTrace();
-
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            return;
         }
-
     }
 
     @Override
@@ -104,23 +92,16 @@ public class patientController extends HttpServlet {
                         PatientDto patient = patientService.getPatient(patientId, con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patient));
-                        PrintWriter out = resp.getWriter();
-                        resp.setContentType("application/json");
-                        resp.setCharacterEncoding("UTF-8");
-                        out.print(responseJson);
-                        out.flush();
+                        CommonMethods.responseProcess(resp, responseJson);
                     }
 
                 } catch (Exception e) {
                     ObjectMapper mapper = new ObjectMapper();
-                    String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    PrintWriter out = resp.getWriter();
-                    resp.setContentType("application/json");
-                    resp.setCharacterEncoding("UTF-8");
-                    out.print(responseJson);
-                    out.flush();
-
+                    /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                    CommonMethods.responseProcess(resp, responseJson);*/
                     e.printStackTrace();
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                    return;
 
                 }
 
@@ -133,27 +114,49 @@ public class patientController extends HttpServlet {
                         List<PatientDto> patients = patientService.getAllPatient(con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patients));
-                        PrintWriter out = resp.getWriter();
-                        resp.setContentType("application/json");
-                        resp.setCharacterEncoding("UTF-8");
-                        out.print(responseJson);
-                        out.flush();
+                        CommonMethods.responseProcess(resp, responseJson);
                     }
 
                 } catch (Exception e) {
                     ObjectMapper mapper = new ObjectMapper();
-                    String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    PrintWriter out = resp.getWriter();
-                    resp.setContentType("application/json");
-                    resp.setCharacterEncoding("UTF-8");
-                    out.print(responseJson);
-                    out.flush();
-
+                    /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                    CommonMethods.responseProcess(resp, responseJson);*/
                     e.printStackTrace();
-
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                    return;
                 }
-
         }
 
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String patientId = req.getParameter("patientId");
+        String doctorId = req.getParameter("doctorId");
+        String doctorRole = req.getParameter("doctorRole"); //addmit or discharged
+
+        try {
+            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+            try (Connection con = bds.getConnection()) {
+                boolean isUpdated = patientService.updatePatient(patientId, doctorId, doctorRole, con);
+                ObjectMapper mapper = new ObjectMapper();
+                if (isUpdated) {
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "patient is updated"));
+                    CommonMethods.responseProcess(resp, responseJson);
+                } else if (!isUpdated) {
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "patient is not updated"));
+                    CommonMethods.responseProcess(resp, responseJson);
+                }
+            }
+
+        } catch (Exception e) {
+            ObjectMapper mapper = new ObjectMapper();
+          /*  String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+            CommonMethods.responseProcess(resp, responseJson);*/
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            return;
+
+        }
     }
 }

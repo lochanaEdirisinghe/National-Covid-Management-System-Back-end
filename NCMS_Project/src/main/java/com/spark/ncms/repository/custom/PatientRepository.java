@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface PatientRepository {
+public interface PatientRepository extends SuperRepository {
 
     boolean savePatient(Patient patient ,Connection con) throws SQLException, ClassNotFoundException;
     boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException;
