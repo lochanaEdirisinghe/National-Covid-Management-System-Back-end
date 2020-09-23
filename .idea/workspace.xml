@@ -9,114 +9,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27e109a6-af6e-4a46-b61e-dbe27fc9b735" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_78.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_25_1_android.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_guice_no_aop_4_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_1_10_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ant_ant_launcher_1_10_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_compat_qual_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_testng_testng_7_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_21.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/CommonMethods.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/SuperRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/SuperSevice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NCMS_Project/src/test/java/com/spark/ncms/test/DoctorServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NCMS_Project/src/test/java/com/spark/ncms/test/PatientServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NCMS_Project/src/test/resources/testng.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/NCMS_Project_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/NCMS_Project_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_chain_commons_chain_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_digester_commons_digester_1_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_validator_commons_validator_1_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_struts_struts_core_1_3_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_all_2_0_2_beta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_all_1_10_19.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_2_8_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_2_8_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_2_8_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__oro_oro_2_0_8.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/FrontEnd/FrontEnd.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/.project" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NCMS_Project/NCMS_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/NCMS_Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/DoctorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/MohController.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/MohController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/patientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/patientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/listners/DbListner.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/listners/DbListner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/RepoFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/RepoFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/AuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/AuthRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/DoctorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/HospitalBedRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/HospitalBedRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/HospitalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/HospitalRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/PatientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/PatientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/QueueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/QueueRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/ServiceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/ServiceFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/MohService.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/MohService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/PatientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/DoctorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/DoctorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/PatientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/PatientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/DoctorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/DoctorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/MohController.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/MohController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/patientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/controller/patientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/HospitalBedDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/HospitalBedDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/HospitalDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/HospitalDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/PatientDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/PatientDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/QueueDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/dto/QueueDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/Doctor.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/Doctor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/Hospital.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/Hospital.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/HospitalBed.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/HospitalBed.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/Patient.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/Patient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/PatientQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/PatientQueue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/filter/HospitalFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/filter/HospitalFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/filter/MohFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/filter/MohFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/listners/DbListner.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/listners/DbListner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/RepoFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/RepoFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/RepoType.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/RepoType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/AuthRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/AuthRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/DoctorRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/DoctorRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/HospitalBedRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/HospitalBedRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/HospitalRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/HospitalRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/PatientRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/PatientRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/QueueRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/QueueRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/AuthRepoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/AuthRepoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/DoctorRepoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/DoctorRepoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/HospitalBedRepoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/HospitalBedRepoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/HospitalRepoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/HospitalRepoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/PatientRepoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/PatientRepoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/QueueRepoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/repository/custom/impl/QueueRepoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/HospitaBedResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/HospitaBedResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/HospitalBedRespDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/HospitalBedRespDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/PatientResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/PatientResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/StandardResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/response/StandardResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/ServiceFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/ServiceFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/ServiceType.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/ServiceType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/DoctorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/DoctorService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/MohService.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/MohService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/PatientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/PatientService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/AuthServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/AuthServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/DoctorServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/DoctorServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/MohServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/MohServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/PatientServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/NCMS_Project/target/classes/com/spark/ncms/service/custom/impl/PatientServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/test-classes/com/spark/ncms/controller/AuthControllerTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/NCMS_Project/target/" />
@@ -185,111 +81,30 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="2073406876">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/AuthServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/ServiceFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="29" column="47" lean-forward="true" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/SuperSevice.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/SuperRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/patientController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="157" column="19" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/MohService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/PatientService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/RepoFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/PatientServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="134" column="37" lean-forward="true" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/AuthController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#913#914#0" expanded="true" />
-                <element signature="e#1000#1001#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/FrontEnd/ncms-frontend/src/styles.css">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -406,7 +221,15 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/FrontEnd/ncms-frontend/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/FrontEnd/ncms-frontend/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="699" />
@@ -420,111 +243,38 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
+              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="ncms-frontend" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
+              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="ncms-frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-              <item name="custom" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="custom" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NCM_SYSTEM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="custom" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://F:/Spark_Training/NCMS_Project/NCM_SYSTEM/NCMS_Project/src/main/java/com/spark/ncms/dto/QueueDto.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1600654903185" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Day9/testng-demo" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1600883456962" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -702,6 +452,7 @@
       <workItem from="1599952113495" duration="1702000" />
       <workItem from="1600146710711" duration="9716000" />
       <workItem from="1600396747322" duration="20583000" />
+      <workItem from="1600882433814" duration="974000" />
     </task>
     <servers />
   </component>
@@ -738,13 +489,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176757000" />
+    <option name="totallyTimeSpent" value="177731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27231467" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -761,7 +512,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.23567921" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3289689" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
@@ -787,13 +538,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/response/HospitalBedRespDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/impl/PatientRepoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
@@ -912,36 +656,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/HospitalBedService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/HospitalBedServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/HospitalBedController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/HospitalBedService.java" />
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/HospitalBedServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/HospitalBedController.java" />
     <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/response/HospitaBedResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -974,9 +691,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -984,10 +698,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="62" selection-start-line="62" selection-end-line="62" />
-          <folding>
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1131#1132#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -995,11 +705,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#848#849#0" expanded="true" />
-            <element signature="e#939#940#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1007,11 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#257#258#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1073,17 +773,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/MohService.java">
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/AuthServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/PatientService.java">
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/ServiceFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        <state relative-caret-position="442">
+          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,7 +802,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/custom/SuperRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="85">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1104,27 +810,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/RepoFactory.java">
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/patientController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="2295">
+          <caret line="157" column="19" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/ServiceFactory.java">
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/MohService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="29" column="47" lean-forward="true" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/PatientService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/repository/RepoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/AuthController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+        <state relative-caret-position="102">
+          <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#913#914#0" expanded="true" />
@@ -1133,29 +850,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/controller/patientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="157" column="19" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/AuthServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NCMS_Project/src/main/java/com/spark/ncms/service/custom/impl/PatientServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="134" column="37" lean-forward="true" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
+        <state relative-caret-position="1957">
+          <caret line="134" column="37" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/ncms-frontend/src/styles.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
