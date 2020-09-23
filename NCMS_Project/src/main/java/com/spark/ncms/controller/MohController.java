@@ -29,40 +29,33 @@ public class MohController extends HttpServlet {
 
     private MohService mohService;
 
-    public MohController(){
-        mohService=ServiceFactory.getInstance().getService(ServiceType.MOH);
+    public MohController() {
+        mohService = ServiceFactory.getInstance().getService(ServiceType.MOH);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        switch (req.getPathInfo()){
+        switch (req.getPathInfo()) {
 
             case "/queue":
 
                 try {
                     BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
-                    try(Connection con = bds.getConnection()) {
+                    try (Connection con = bds.getConnection()) {
                         List<QueueDto> queuePatients = mohService.getQueueDetails(con);
                         ObjectMapper mapper = new ObjectMapper();
-                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", queuePatients ));
-                        PrintWriter out = resp.getWriter();
-                        resp.setContentType("application/json");
-                        resp.setCharacterEncoding("UTF-8");
-                        out.print(responseJson);
-                        out.flush();
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", queuePatients));
+                        CommonMethods.responseProcess(resp, responseJson);
                     }
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     ObjectMapper mapper = new ObjectMapper();
                     String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    PrintWriter out = resp.getWriter();
-                    resp.setContentType("application/json");
-                    resp.setCharacterEncoding("UTF-8");
-                    out.print(responseJson);
-                    out.flush();
-
+                    CommonMethods.responseProcess(resp, responseJson);
                     e.printStackTrace();
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                    return;
 
                 }
 
@@ -72,41 +65,35 @@ public class MohController extends HttpServlet {
 
                 try {
                     BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
-                    try(Connection con = bds.getConnection()) {
+                    try (Connection con = bds.getConnection()) {
                         List<HospitalBedDto> bedDetails = mohService.getBedDetails(con);
                         ObjectMapper mapper = new ObjectMapper();
-                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedDetails ));
-                        PrintWriter out = resp.getWriter();
-                        resp.setContentType("application/json");
-                        resp.setCharacterEncoding("UTF-8");
-                        out.print(responseJson);
-                        out.flush();
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedDetails));
+                        CommonMethods.responseProcess(resp, responseJson);
                     }
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     ObjectMapper mapper = new ObjectMapper();
                     String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    PrintWriter out = resp.getWriter();
-                    resp.setContentType("application/json");
-                    resp.setCharacterEncoding("UTF-8");
-                    out.print(responseJson);
-                    out.flush();
-
+                    CommonMethods.responseProcess(resp, responseJson);
                     e.printStackTrace();
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                    return;
 
                 }
 
+            default:
+                ObjectMapper mapper = new ObjectMapper();
+                String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "url is not valid"));
+                CommonMethods.responseProcess(resp, responseJson);
+
         }
-
-
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ServletInputStream inputStream = req.getInputStream();
-        JsonReader reader = Json.createReader(inputStream);
-        JsonObject jsonObject = reader.readObject();
+        JsonObject jsonObject = CommonMethods.getJsonObject(req);
 
         String id = jsonObject.getString("id");
         String name = jsonObject.getString("name");
@@ -118,30 +105,22 @@ public class MohController extends HttpServlet {
 
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
-            try(Connection con = bds.getConnection()) {
+            try (Connection con = bds.getConnection()) {
                 boolean isAdded = mohService.addNewHospital(hospitalDto, con);
                 ObjectMapper mapper = new ObjectMapper();
-                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isAdded ));
-                PrintWriter out = resp.getWriter();
-                resp.setContentType("application/json");
-                resp.setCharacterEncoding("UTF-8");
-                out.print(responseJson);
-                out.flush();
+                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isAdded));
+                CommonMethods.responseProcess(resp, responseJson);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             ObjectMapper mapper = new ObjectMapper();
-            String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-            PrintWriter out = resp.getWriter();
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            out.print(responseJson);
-            out.flush();
-
+            /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+            CommonMethods.responseProcess(resp, responseJson);*/
             e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            return;
 
         }
-
 
 
     }

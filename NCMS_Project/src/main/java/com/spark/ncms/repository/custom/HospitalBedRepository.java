@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface HospitalBedRepository {
+public interface HospitalBedRepository extends SuperRepository{
 
    List<String> BedsAvailableHospitals(Connection con) throws SQLException, ClassNotFoundException;
    List<HospitalBed> getHospitalBedList(String hospitalId, Connection con) throws SQLException, ClassNotFoundException;

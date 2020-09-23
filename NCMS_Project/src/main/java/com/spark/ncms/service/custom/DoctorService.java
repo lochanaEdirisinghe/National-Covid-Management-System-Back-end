@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-public interface DoctorService {
+public interface DoctorService extends SuperSevice{
     HospitaBedResponse getHospitalBedList(String doctorId, Connection con) throws SQLException, ClassNotFoundException;
-    boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException;
+
 }

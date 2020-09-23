@@ -11,7 +11,6 @@ public class ServiceFactory {
     private ServiceFactory(){
 
     }
-
     //Singleton
     public static ServiceFactory getInstance() {
         if(serviceFactory==null){

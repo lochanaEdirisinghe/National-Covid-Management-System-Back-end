@@ -8,8 +8,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface PatientService {
+public interface PatientService extends SuperSevice {
     PatientResponse savePatient(PatientDto patientDto, Connection con) throws SQLException, SQLException, ClassNotFoundException;
     PatientDto getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException;
     List<PatientDto> getAllPatient(Connection con) throws SQLException, ClassNotFoundException;
+    boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException;
 }
