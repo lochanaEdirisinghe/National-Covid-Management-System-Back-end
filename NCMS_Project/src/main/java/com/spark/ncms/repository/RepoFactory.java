@@ -14,7 +14,7 @@ public class RepoFactory {
         }
         return repoFactory;
     }
-
+//Factory
     public <T> T getRepo(RepoType type){
         switch (type){
             case PATIENT:
