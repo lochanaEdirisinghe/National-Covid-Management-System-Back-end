@@ -35,16 +35,16 @@ public class patientController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         JsonObject jsonObject = CommonMethods.getJsonObject(req);
-
         String firstName = jsonObject.getString("firstName");
         String lastName = jsonObject.getString("lastName");
-        int locationX = jsonObject.getInt("locationX");
-        int locationY = jsonObject.getInt("locationY");
+        int locationX = Integer.parseInt(jsonObject.getString("locationX"));
+        int locationY = Integer.parseInt(jsonObject.getString("locationY"));
         String district = jsonObject.getString("district");
-        int age = jsonObject.getInt("age");
+        int age = Integer.parseInt(jsonObject.getString("age"));
         String gender = jsonObject.getString("gender");
         String contactNo = jsonObject.getString("contactNo");
         String email = jsonObject.getString("email");
+
 
         PatientDto patientDto = new PatientDto();
         patientDto.setFirstName(firstName);

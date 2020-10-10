@@ -6,5 +6,5 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public interface AuthRepository extends SuperRepository{
-    User userCheck(String username , String password, Connection con) throws SQLException;
+    User userCheck(String userid , String passWord, Connection con) throws SQLException;
 }

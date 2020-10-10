@@ -29,13 +29,16 @@ public class DoctorController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String doctorId = req.getParameter("doctorId");
+        System.out.println(req.getHeader("Authorization"));
+        System.out.println(doctorId + "doc servlet");
 
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try (Connection con = bds.getConnection()) {
                 HospitaBedResponse hospitaBedResponse = doctorService.getHospitalBedList(doctorId, con);
+                System.out.println(hospitaBedResponse.getHospitalName());
                 ObjectMapper mapper = new ObjectMapper();
-                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", hospitaBedResponse));
+                String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  hospitaBedResponse));
                 CommonMethods.responseProcess(resp, responseJson);
             }
 

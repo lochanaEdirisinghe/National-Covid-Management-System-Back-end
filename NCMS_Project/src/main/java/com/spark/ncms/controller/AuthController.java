@@ -2,10 +2,13 @@ package com.spark.ncms.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spark.ncms.constants.ResponseCode;
+import com.spark.ncms.dto.AuthUser;
 import com.spark.ncms.response.StandardResponse;
 import com.spark.ncms.service.ServiceFactory;
 import com.spark.ncms.service.ServiceType;
 import com.spark.ncms.service.custom.AuthService;
+import com.spark.ncms.util.JWTUtil;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.json.Json;
@@ -25,8 +28,8 @@ import java.sql.Connection;
 @WebServlet(urlPatterns = "/api/v1/auth/login")
 public class AuthController extends HttpServlet {
 
-
     private AuthService authService;
+    private JWTUtil jwtUtil = new JWTUtil();
 
     public AuthController() {
         authService = ServiceFactory.getInstance().getService(ServiceType.USER);
@@ -37,21 +40,24 @@ public class AuthController extends HttpServlet {
         JsonObject jsonObject = CommonMethods.getJsonObject(req);
         ObjectMapper mapper = new ObjectMapper();
 
-        String username = jsonObject.getString("username");
+        String userId = jsonObject.getString("userId");
         String password = jsonObject.getString("password");
+
 
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try (Connection con = bds.getConnection()) {
-                String role = authService.userCheck(username, password, con);
+                //check the user is available
+                String role = authService.userCheck(userId, password, con);
+
                 if (role != null) {
-                    req.getSession().setAttribute("role", role);
-                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", role));
+                    String token = jwtUtil.createToken(userId);
+                    AuthUser authUser = new AuthUser(userId, password);
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.SUCCESS, token, authUser));
                     CommonMethods.responseProcess(resp, responseJson);
                 } else {
-                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "not allowed"));
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.UNAUTHORIZED, "UserId & Password Wrong..!", null));
                     CommonMethods.responseProcess(resp, responseJson);
-
                 }
 
             }

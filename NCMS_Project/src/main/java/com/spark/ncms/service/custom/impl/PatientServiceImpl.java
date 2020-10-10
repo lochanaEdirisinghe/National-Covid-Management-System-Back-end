@@ -57,11 +57,9 @@ public class PatientServiceImpl implements PatientService {
                 hospitalDetails.add(hospitalRepo.getHospital(Hid, con));
             }
             for (Hospital hospital : hospitalDetails) {
-                System.out.println(hospital.getName());
 
                 double distance = findDistance(hospital.getLocation_x(), hospital.getLocation_y(), patientX, patientY);
 
-                System.out.println(distance);
                 if (minimumDistance == 0.0) {
                     minimumDistance = distance;
                     finalHid = hospital.getId();
@@ -73,8 +71,6 @@ public class PatientServiceImpl implements PatientService {
                         finalHname = hospital.getName();
                     }
                 }
-                System.out.println(minimumDistance);
-
             }
 
             int bedId = hospitalBedRepo.getBedId(finalHid, con);
@@ -137,7 +133,7 @@ public class PatientServiceImpl implements PatientService {
         for (int i = 0; i < 3; i++) {
             sb.append(randomstring.charAt(random.nextInt(randomstring.length())));
         }
-        String randomId = "Pid_" + sb.toString() + firstName.substring(0, 3);
+        String randomId = "Pid" + sb.toString() + firstName.substring(0, 3);
         return randomId;
     }
 

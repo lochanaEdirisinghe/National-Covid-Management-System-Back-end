@@ -1,10 +1,12 @@
 package com.spark.ncms.service.custom.impl;
 
+import com.spark.ncms.entity.Hospital;
 import com.spark.ncms.entity.Patient;
 import com.spark.ncms.repository.RepoFactory;
 import com.spark.ncms.repository.RepoType;
 import com.spark.ncms.repository.custom.DoctorRepository;
 import com.spark.ncms.repository.custom.HospitalBedRepository;
+import com.spark.ncms.repository.custom.HospitalRepository;
 import com.spark.ncms.repository.custom.PatientRepository;
 import com.spark.ncms.entity.HospitalBed;
 import com.spark.ncms.response.HospitaBedResponse;
@@ -21,17 +23,20 @@ public class DoctorServiceImpl implements DoctorService {
     private DoctorRepository doctorRepo;
     private HospitalBedRepository hospitalBedRepo;
     private PatientRepository patientRepo;
+    private HospitalRepository hospitalRepo;
 
     public DoctorServiceImpl(){
         doctorRepo = RepoFactory.getInstance().getRepo(RepoType.DOCTOR);
         hospitalBedRepo = RepoFactory.getInstance().getRepo(RepoType.HOSPITAL_BED);
         patientRepo = RepoFactory.getInstance().getRepo(RepoType.PATIENT);
+        hospitalRepo = RepoFactory.getInstance().getRepo(RepoType.HOSPITAL);
     }
 
     @Override
     public HospitaBedResponse getHospitalBedList(String doctorId, Connection con) throws SQLException, ClassNotFoundException{
         List<HospitalBedRespDto> bedList = new ArrayList<>();
         String hospitalId = doctorRepo.getHospitalId(doctorId, con);
+        String hospitalName = hospitalRepo.getHospital(hospitalId, con).getName();
         System.out.println(hospitalId);
         List<HospitalBed> hospitalBedList = hospitalBedRepo.getHospitalBedList(hospitalId, con);
         for (HospitalBed hospitalBed: hospitalBedList) {
@@ -39,9 +44,9 @@ public class DoctorServiceImpl implements DoctorService {
             bedList.add(new HospitalBedRespDto(hospitalBed.getBedId(), hospitalBed.getPatientId(), patient.getAdmitted_by()!=null, patient.getDischarged_by()!=null));
         }
         if(!bedList.isEmpty()) {
-            return new HospitaBedResponse(hospitalId, bedList);
+            return new HospitaBedResponse(hospitalId, hospitalName, bedList);
         }
-        return new HospitaBedResponse(hospitalId, null);
+        return new HospitaBedResponse(hospitalId, hospitalName, null);
     }
 
 

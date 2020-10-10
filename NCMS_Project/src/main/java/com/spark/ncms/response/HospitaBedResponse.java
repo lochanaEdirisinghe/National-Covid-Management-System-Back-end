@@ -12,5 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 public class HospitaBedResponse {
     private String hospitalId;
+    private String hospitalName;
     private List<HospitalBedRespDto> hospitalBeds;
 }

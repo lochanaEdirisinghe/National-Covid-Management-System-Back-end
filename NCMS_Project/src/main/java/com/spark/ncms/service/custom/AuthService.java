@@ -5,5 +5,5 @@ import java.sql.SQLException;
 
 public interface AuthService extends SuperSevice{
 
-    String userCheck(String username , String password, Connection con) throws SQLException;
+    String userCheck(String useId , String password, Connection con) throws SQLException;
 }

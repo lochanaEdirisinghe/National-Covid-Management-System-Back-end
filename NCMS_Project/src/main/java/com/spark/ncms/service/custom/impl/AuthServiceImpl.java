@@ -19,11 +19,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String userCheck(String username, String password, Connection con) throws SQLException {
-        User user = authRepository.userCheck(username, password, con);
-        if(user.isHospital()){
-            return "hospital"
-;        }else if(user.isMoh()){
+    public String userCheck(String userId, String password, Connection con) throws SQLException {
+        User user = authRepository.userCheck(userId, password, con);
+        if(user.isIsdoctor()){
+            return "doctor"
+;        }else if(user.isIsmoh()){
             return "moh";
         }
         return null;

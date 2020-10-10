@@ -9,9 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class User {
-    private String username;
+    private String userId;
     private String password;
-    private String namel;
-    private boolean moh;
-    private boolean hospital;
+    private boolean ismoh;
+    private boolean isdoctor;
 }
