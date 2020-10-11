@@ -135,16 +135,18 @@ public class patientController extends HttpServlet {
         String doctorId = req.getParameter("doctorId");
         String doctorRole = req.getParameter("doctorRole"); //addmit or discharged
 
+        System.out.println(patientId+doctorId+doctorRole);
+
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try (Connection con = bds.getConnection()) {
                 boolean isUpdated = patientService.updatePatient(patientId, doctorId, doctorRole, con);
                 ObjectMapper mapper = new ObjectMapper();
                 if (isUpdated) {
-                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "patient is updated"));
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isUpdated));
                     CommonMethods.responseProcess(resp, responseJson);
                 } else if (!isUpdated) {
-                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", "patient is not updated"));
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isUpdated));
                     CommonMethods.responseProcess(resp, responseJson);
                 }
             }

@@ -52,7 +52,7 @@ public class AuthController extends HttpServlet {
 
                 if (role != null) {
                     String token = jwtUtil.createToken(userId);
-                    AuthUser authUser = new AuthUser(userId, password);
+                    AuthUser authUser = new AuthUser(userId, password, role);
                     String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.SUCCESS, token, authUser));
                     CommonMethods.responseProcess(resp, responseJson);
                 } else {

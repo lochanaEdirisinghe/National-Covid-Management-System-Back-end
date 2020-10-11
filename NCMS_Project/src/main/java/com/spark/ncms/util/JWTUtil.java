@@ -20,7 +20,7 @@ public class JWTUtil {
         //set current date
         instance.setTime(today);
         //add 10 minits to the current time
-        instance.add(Calendar.MINUTE, 1);
+        instance.add(Calendar.MINUTE, 4);
         //token expire time
         Date exTime = instance.getTime();
 

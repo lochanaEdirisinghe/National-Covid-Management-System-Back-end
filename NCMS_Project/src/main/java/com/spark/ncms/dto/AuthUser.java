@@ -10,4 +10,5 @@ import lombok.*;
 public class AuthUser {
     private String userId;
     private String password;
+    private String role;
 }

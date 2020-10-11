@@ -55,15 +55,17 @@ public class PatientRepoImpl implements PatientRepository {
             }
             return false;
         }else if(doctorRole.equals("discharge")){
-            PreparedStatement pstm = con.prepareStatement("update patient set discharged_by=?, discharge_date=? where id=?");
-            pstm.setObject(1, doctorId );
-            pstm.setObject(2, date);
-            pstm.setObject(3, patientId);
-            int i = pstm.executeUpdate();
-            if(i>0){
-                return true;
+            if(getPatient(patientId, con).getAdmitted_by()!=null){
+                PreparedStatement pstm = con.prepareStatement("update patient set discharged_by=?, discharge_date=? where id=?");
+                pstm.setObject(1, doctorId );
+                pstm.setObject(2, date);
+                pstm.setObject(3, patientId);
+                int i = pstm.executeUpdate();
+                if(i>0){
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
         return false;
     }

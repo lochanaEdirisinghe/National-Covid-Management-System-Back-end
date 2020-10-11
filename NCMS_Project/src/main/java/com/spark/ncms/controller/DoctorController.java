@@ -29,8 +29,6 @@ public class DoctorController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String doctorId = req.getParameter("doctorId");
-        System.out.println(req.getHeader("Authorization"));
-        System.out.println(doctorId + "doc servlet");
 
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
