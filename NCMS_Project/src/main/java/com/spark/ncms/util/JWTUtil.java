@@ -52,7 +52,6 @@ public class JWTUtil {
     }
 
     public boolean checkValidity(String jws) {
-        System.out.println(jws +"   token");
         Jws<Claims> claims = getClaims(jws);
         if (claims != null) {
             Date expiration = claims.getBody().getExpiration();

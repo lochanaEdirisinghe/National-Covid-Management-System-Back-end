@@ -1,7 +1,7 @@
 package com.spark.ncms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spark.ncms.dto.HospitalBedDto;
+import com.spark.ncms.dto.HospitalCount;
 import com.spark.ncms.dto.HospitalDto;
 import com.spark.ncms.dto.QueueDto;
 import com.spark.ncms.response.StandardResponse;
@@ -10,17 +10,13 @@ import com.spark.ncms.service.ServiceType;
 import com.spark.ncms.service.custom.MohService;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.List;
 
@@ -66,9 +62,9 @@ public class MohController extends HttpServlet {
                 try {
                     BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
                     try (Connection con = bds.getConnection()) {
-                        List<HospitalBedDto> bedDetails = mohService.getBedDetails(con);
+                        List<HospitalCount> bedCount = mohService.getBedCount(con);
                         ObjectMapper mapper = new ObjectMapper();
-                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedDetails));
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedCount));
                         CommonMethods.responseProcess(resp, responseJson);
                     }
 
@@ -81,6 +77,7 @@ public class MohController extends HttpServlet {
                     return;
 
                 }
+                break;
 
             default:
                 ObjectMapper mapper = new ObjectMapper();
@@ -95,11 +92,11 @@ public class MohController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject jsonObject = CommonMethods.getJsonObject(req);
 
-        String id = jsonObject.getString("id");
+        String id = jsonObject.getString("hospitalId");
         String name = jsonObject.getString("name");
         String district = jsonObject.getString("district");
-        int locationX = jsonObject.getInt("locationX");
-        int locationY = jsonObject.getInt("locationY");
+        int locationX = Integer.parseInt(jsonObject.getString("locationX"));
+        int locationY = Integer.parseInt(jsonObject.getString("locationY"));
 
         HospitalDto hospitalDto = new HospitalDto(id, name, district, locationX, locationY);
 

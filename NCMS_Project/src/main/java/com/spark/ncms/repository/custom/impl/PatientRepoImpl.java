@@ -1,6 +1,7 @@
 package com.spark.ncms.repository.custom.impl;
 
 
+import com.spark.ncms.dto.PatientCount;
 import com.spark.ncms.entity.Patient;
 import com.spark.ncms.repository.custom.PatientRepository;
 
@@ -33,7 +34,7 @@ public class PatientRepoImpl implements PatientRepository {
         pstm.setObject(14, patient.getDischarge_date());
         pstm.setObject(15, patient.getDischarged_by());
 
-        if(pstm.executeUpdate()>0) {
+        if (pstm.executeUpdate() > 0) {
             return true;
         }
         return false;
@@ -44,24 +45,24 @@ public class PatientRepoImpl implements PatientRepository {
         Calendar calendar = Calendar.getInstance();
         java.util.Date currentDate = calendar.getTime();
         java.sql.Date date = new java.sql.Date(currentDate.getTime());
-        if(doctorRole.equals("admit")){
+        if (doctorRole.equals("admit")) {
             PreparedStatement pstm = con.prepareStatement("update patient set admitted_by=?, admit_date=? where id=?");
-            pstm.setObject(1, doctorId );
+            pstm.setObject(1, doctorId);
             pstm.setObject(2, date);
             pstm.setObject(3, patientId);
             int i = pstm.executeUpdate();
-            if(i>0){
+            if (i > 0) {
                 return true;
             }
             return false;
-        }else if(doctorRole.equals("discharge")){
-            if(getPatient(patientId, con).getAdmitted_by()!=null){
+        } else if (doctorRole.equals("discharge")) {
+            if (getPatient(patientId, con).getAdmitted_by() != null) {
                 PreparedStatement pstm = con.prepareStatement("update patient set discharged_by=?, discharge_date=? where id=?");
-                pstm.setObject(1, doctorId );
+                pstm.setObject(1, doctorId);
                 pstm.setObject(2, date);
                 pstm.setObject(3, patientId);
                 int i = pstm.executeUpdate();
-                if(i>0){
+                if (i > 0) {
                     return true;
                 }
                 return false;
@@ -75,18 +76,16 @@ public class PatientRepoImpl implements PatientRepository {
         List<Patient> patients = new ArrayList<>();
         PreparedStatement pstm = con.prepareStatement("select * from patient");
         ResultSet rst = pstm.executeQuery();
-        if(rst.next()){
-            while (rst.next()){
-                patients.add(new Patient(rst.getString(1), rst.getString(2), rst.getString(3),
-                        rst.getString(4), rst.getInt(5), rst.getInt(6), rst.getString(7),
-                        rst.getString(8),rst.getString(9), rst.getString(10),rst.getInt(11),
-                        rst.getString(12), rst.getString(13), rst.getString(14),rst.getString(15)));
-            }
-            return patients;
-        }
-        return null;
-    }
+        while (rst.next()) {
+            patients.add(new Patient(rst.getString(1), rst.getString(2), rst.getString(3),
+                    rst.getString(4), rst.getInt(5), rst.getInt(6), rst.getString(7),
+                    rst.getString(8), rst.getString(9), rst.getString(10), rst.getInt(11),
+                    rst.getString(12), rst.getString(13), rst.getString(14), rst.getString(15)));
 
+        }
+        return patients;
+
+    }
 
 
     @Override
@@ -94,14 +93,44 @@ public class PatientRepoImpl implements PatientRepository {
         PreparedStatement pstm = con.prepareStatement("select * from patient where id=?");
         pstm.setObject(1, patientId);
         ResultSet rst = pstm.executeQuery();
-        if(rst.next()){
+        if (rst.next()) {
             return new Patient(rst.getString(1), rst.getString(2), rst.getString(3),
                     rst.getString(4), rst.getInt(5), rst.getInt(6), rst.getString(7),
-                    rst.getString(8),rst.getString(9), rst.getString(10), rst.getInt(11),
+                    rst.getString(8), rst.getString(9), rst.getString(10), rst.getInt(11),
                     rst.getString(12), rst.getString(13), rst.getString(14), rst.getString(15));
         }
         return null;
     }
+
+    @Override
+    public PatientCount getPatientCount(Connection con) throws SQLException, ClassNotFoundException {
+        PatientCount patientCount= new PatientCount();
+        PreparedStatement pstm = con.prepareStatement("select count(id) from patient where discharge_date is null");
+        ResultSet rst = pstm.executeQuery();
+        if(rst.next()){
+            patientCount.setActivecount(rst.getInt(1));
+        }
+
+        PreparedStatement pstm2 = con.prepareStatement("select count(id) from patient where discharge_date is not null");
+        ResultSet rst2 = pstm2.executeQuery();
+        if (rst2.next()) {
+            patientCount.setDischarged(rst2.getInt(1));
+
+        }
+        return patientCount;
+
+    }
+/*
+    @Override
+    public PatientCount getDischargedPatientCount(Connection con) throws SQLException, ClassNotFoundException {
+        PreparedStatement pstm = con.prepareStatement("select count(id) from patient where discharge_date is not null");
+        ResultSet rst2 = pstm.executeQuery();
+        if (rst.next()) {
+            patientCount.setDischarged(rst2.getInt(1));
+
+        }
+        return patientCount;
+    }*/
 
 
 }

@@ -1,5 +1,7 @@
 package com.spark.ncms.service.custom.impl;
 
+import com.spark.ncms.dto.HospitalCount;
+import com.spark.ncms.dto.PatientCount;
 import com.spark.ncms.repository.RepoFactory;
 import com.spark.ncms.repository.RepoType;
 import com.spark.ncms.repository.custom.*;
@@ -123,6 +125,23 @@ public class PatientServiceImpl implements PatientService {
             }
         }
         return false;
+    }
+
+    @Override
+    public PatientCount getPatientCount(Connection con) throws SQLException, ClassNotFoundException {
+        return patientRepo.getPatientCount(con);
+
+    }
+
+    @Override
+    public List<HospitalCount> getHospitalPatientCount(Connection con) throws SQLException, ClassNotFoundException {
+        List<HospitalCount>  patientCount = new ArrayList<>();
+        List<Hospital> allHospitals = hospitalRepo.getAllHospitals(con);
+        for (Hospital h: allHospitals){
+            int patients = 10 - (hospitalBedRepo.getBedCount(h.getId(), con));
+            patientCount.add(new HospitalCount(h.getId(), h.getName(), patients));
+        }
+        return patientCount;
     }
 
 

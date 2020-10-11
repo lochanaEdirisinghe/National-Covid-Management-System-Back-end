@@ -17,7 +17,7 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
         List<String> hospitals = new ArrayList<>();
         PreparedStatement pstm = con.prepareStatement("select distinct hospital_id from hospital_bed where patient_id is null");
         ResultSet rst = pstm.executeQuery();
-        while (rst.next()){
+        while (rst.next()) {
             hospitals.add(rst.getString(1));
         }
         return hospitals;
@@ -29,27 +29,23 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
         PreparedStatement pstm = con.prepareStatement("select * from hospital_bed where hospital_id=? and patient_id is not null");
         pstm.setObject(1, hospitalId);
         ResultSet rst = pstm.executeQuery();
-        if(rst.next()){
-            while (rst.next()){
-                hospital_beds.add(new HospitalBed(rst.getInt(1), rst.getString(2), rst.getString(3)));
-            }
-            return hospital_beds;
+        while (rst.next()) {
+            hospital_beds.add(new HospitalBed(rst.getInt(1), rst.getString(2), rst.getString(3)));
         }
-        return null;
+        return hospital_beds;
+
     }
 
     @Override
-    public List<HospitalBed> getBedList(Connection con) throws SQLException, ClassNotFoundException {
+    public int getBedCount(String hospitalId, Connection con) throws SQLException, ClassNotFoundException {
         List<HospitalBed> hospital_beds = new ArrayList<>();
-        PreparedStatement pstm = con.prepareStatement("select * from hospital_bed");
+        PreparedStatement pstm = con.prepareStatement("select count(id) from hospital_bed where hospital_id=? and patient_id is null");
+        pstm.setObject(1, hospitalId);
         ResultSet rst = pstm.executeQuery();
-        if(rst.next()){
-            while (rst.next()){
-                hospital_beds.add(new HospitalBed(rst.getInt(1), rst.getString(2), rst.getString(3)));
-            }
-            return hospital_beds;
+        if (rst.next()) {
+            return rst.getInt(1);
         }
-        return null;
+        return 0;
     }
 
     @Override
@@ -58,7 +54,7 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
         pstm.setObject(1, null);
         pstm.setObject(2, patientId);
         int i = pstm.executeUpdate();
-        if(i>0){
+        if (i > 0) {
             return true;
         }
         return false;
@@ -69,7 +65,7 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
         PreparedStatement pstm = con.prepareStatement("select min(id) from hospital_bed where hospital_id =? and patient_id is null");
         pstm.setObject(1, hospitalId);
         ResultSet rst = pstm.executeQuery();
-        if(rst.next()){
+        if (rst.next()) {
             int bedId = rst.getInt(1);
             return bedId;
         }
@@ -84,10 +80,21 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
         pstm.setObject(2, hospitalId);
         pstm.setObject(3, bedId);
 
-        if(pstm.executeUpdate()>0){
+        if (pstm.executeUpdate() > 0) {
             return true;
 
         }
         return false;
+    }
+
+    @Override
+    public boolean addHospitalBed(String hospitalId, Connection con) throws SQLException, ClassNotFoundException {
+        for (int i = 1; i < 11; i++) {
+            PreparedStatement pstm = con.prepareStatement("insert into hospital_bed values(? ,? , null)");
+            pstm.setObject(1, i);
+            pstm.setObject(2, hospitalId);
+            pstm.executeUpdate();
+        }
+        return true;
     }
 }

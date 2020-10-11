@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HospitalRepoImpl implements HospitalRepository {
 
@@ -19,7 +21,7 @@ public class HospitalRepoImpl implements HospitalRepository {
         pstm.setObject(4, hospital.getLocation_x());
         pstm.setObject(5, hospital.getLocation_y());
         int i = pstm.executeUpdate();
-        if (i>0){
+        if (i > 0) {
             return true;
         }
         return false;
@@ -30,9 +32,22 @@ public class HospitalRepoImpl implements HospitalRepository {
         PreparedStatement pstm = con.prepareStatement("select * from hospital where id=?");
         pstm.setObject(1, id);
         ResultSet rst = pstm.executeQuery();
-        if(rst.next()){
+        if (rst.next()) {
             return new Hospital(rst.getString(1), rst.getString(2), rst.getString(3), rst.getInt(4), rst.getInt(5));
         }
         return null;
+    }
+
+    @Override
+    public List<Hospital> getAllHospitals(Connection con) throws SQLException, ClassNotFoundException {
+        List<Hospital> hospitalList = new ArrayList<>();
+        PreparedStatement pstm = con.prepareStatement("select * from hospital");
+        ResultSet rst = pstm.executeQuery();
+        while (rst.next()) {
+            hospitalList.add(new Hospital(rst.getString(1), rst.getString(2), rst.getString(3),
+                    rst.getInt(4), rst.getInt(5)));
+
+        }
+        return hospitalList;
     }
 }

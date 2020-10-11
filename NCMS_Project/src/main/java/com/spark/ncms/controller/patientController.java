@@ -1,9 +1,12 @@
 package com.spark.ncms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spark.ncms.dto.HospitalCount;
+import com.spark.ncms.dto.PatientCount;
 import com.spark.ncms.dto.PatientDto;
 import com.spark.ncms.service.ServiceFactory;
 import com.spark.ncms.service.ServiceType;
+import com.spark.ncms.service.custom.MohService;
 import com.spark.ncms.service.custom.PatientService;
 import com.spark.ncms.response.PatientResponse;
 import com.spark.ncms.response.StandardResponse;
@@ -26,6 +29,7 @@ import java.util.List;
 public class patientController extends HttpServlet {
 
     private PatientService patientService;
+
 
     public patientController() {
         patientService = ServiceFactory.getInstance().getService(ServiceType.PATIENT);
@@ -106,6 +110,52 @@ public class patientController extends HttpServlet {
                 }
 
                 break;
+
+
+            case "/totalcount":
+                try {
+                    BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+                    try (Connection con = bds.getConnection()) {
+                        PatientCount patientCount = patientService.getPatientCount(con);
+                        ObjectMapper mapper = new ObjectMapper();
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", patientCount));
+                        CommonMethods.responseProcess(resp, responseJson);
+                    }
+
+                } catch (Exception e) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                    CommonMethods.responseProcess(resp, responseJson);*/
+                    e.printStackTrace();
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                    return;
+
+                }
+
+                break;
+
+            case "/hospitalcount":
+                try {
+                    BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+                    try (Connection con = bds.getConnection()) {
+                        List<HospitalCount> bedCount = patientService.getHospitalPatientCount(con);
+                        ObjectMapper mapper = new ObjectMapper();
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedCount));
+                        CommonMethods.responseProcess(resp, responseJson);
+                    }
+
+                } catch (Exception e) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                    CommonMethods.responseProcess(resp, responseJson);
+                    e.printStackTrace();
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                    return;
+
+                }
+                break;
+
+
 
             case "/":
                 try {
