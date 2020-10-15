@@ -8,17 +8,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27e109a6-af6e-4a46-b61e-dbe27fc9b735" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/NCMS_Project-1.0.0/WEB-INF/lib/log4j-api-2.13.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/NCMS_Project-1.0.0/WEB-INF/lib/log4j-core-2.13.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/surefire-reports/TEST-com.spark.ncms.controller.AuthControllerTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NCMS_Project/target/surefire-reports/com.spark.ncms.controller.AuthControllerTest.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="27e109a6-af6e-4a46-b61e-dbe27fc9b735" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/NCMS_Project/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -348,7 +338,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="675" />
     <option name="y" value="-8" />
     <option name="width" value="699" />
@@ -372,53 +362,7 @@
             <path>
               <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
               <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ncms" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="National-Covid-Management-System" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NCMS_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -432,7 +376,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://F:/Spark_Training/NCMS_Project/NCM_SYSTEM/NCMS_Project/src/main/java/com/spark/ncms/dto/QueueDto.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602741501173" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602742369216" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -665,7 +609,7 @@
       <workItem from="1601997843974" duration="2239000" />
       <workItem from="1602000886524" duration="910000" />
       <workItem from="1602085763482" duration="83537000" />
-      <workItem from="1602740934338" duration="880000" />
+      <workItem from="1602740934338" duration="1141000" />
     </task>
     <servers />
   </component>
@@ -702,7 +646,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267278000" />
+    <option name="totallyTimeSpent" value="267539000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -714,9 +658,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24205749" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24205749" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -727,7 +671,7 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.13584287" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43862522" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.12602292" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
