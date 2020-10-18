@@ -24,7 +24,6 @@ public class AuthFilter implements Filter {
 
 
         //check the token validity
-        System.out.println(jwtUtil.checkValidity(header));
         if (!jwtUtil.checkValidity(header)) {
             //if a request came without a token or without a valid token
             PrintWriter out = response.getWriter();

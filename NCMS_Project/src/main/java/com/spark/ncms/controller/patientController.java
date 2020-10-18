@@ -75,9 +75,6 @@ public class patientController extends HttpServlet {
 
 
         } catch (Exception e) {
-            ObjectMapper mapper = new ObjectMapper();
-            /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-            CommonMethods.responseProcess(resp, responseJson);*/
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             return;
@@ -100,9 +97,6 @@ public class patientController extends HttpServlet {
                     }
 
                 } catch (Exception e) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    CommonMethods.responseProcess(resp, responseJson);*/
                     e.printStackTrace();
                     resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
                     return;
@@ -123,9 +117,6 @@ public class patientController extends HttpServlet {
                     }
 
                 } catch (Exception e) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    CommonMethods.responseProcess(resp, responseJson);*/
                     e.printStackTrace();
                     resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
                     return;
@@ -168,9 +159,6 @@ public class patientController extends HttpServlet {
                     }
 
                 } catch (Exception e) {
-                    ObjectMapper mapper = new ObjectMapper();
-                    /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    CommonMethods.responseProcess(resp, responseJson);*/
                     e.printStackTrace();
                     resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
                     return;
@@ -184,8 +172,6 @@ public class patientController extends HttpServlet {
         String patientId = req.getParameter("patientId");
         String doctorId = req.getParameter("doctorId");
         String doctorRole = req.getParameter("doctorRole"); //addmit or discharged
-
-        System.out.println(patientId+doctorId+doctorRole);
 
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
@@ -202,9 +188,6 @@ public class patientController extends HttpServlet {
             }
 
         } catch (Exception e) {
-            ObjectMapper mapper = new ObjectMapper();
-          /*  String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-            CommonMethods.responseProcess(resp, responseJson);*/
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             return;

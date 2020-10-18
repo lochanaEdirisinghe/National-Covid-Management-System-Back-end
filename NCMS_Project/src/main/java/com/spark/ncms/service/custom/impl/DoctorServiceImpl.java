@@ -37,7 +37,6 @@ public class DoctorServiceImpl implements DoctorService {
         List<HospitalBedRespDto> bedList = new ArrayList<>();
         String hospitalId = doctorRepo.getHospitalId(doctorId, con);
         String hospitalName = hospitalRepo.getHospital(hospitalId, con).getName();
-        System.out.println(hospitalId);
         List<HospitalBed> hospitalBedList = hospitalBedRepo.getHospitalBedList(hospitalId, con);
         for (HospitalBed hospitalBed: hospitalBedList) {
             Patient patient = patientRepo.getPatient(hospitalBed.getPatientId(), con);

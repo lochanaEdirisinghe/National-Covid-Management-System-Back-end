@@ -34,16 +34,12 @@ public class DoctorController extends HttpServlet {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try (Connection con = bds.getConnection()) {
                 HospitaBedResponse hospitaBedResponse = doctorService.getHospitalBedList(doctorId, con);
-                System.out.println(hospitaBedResponse.getHospitalName());
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  hospitaBedResponse));
                 CommonMethods.responseProcess(resp, responseJson);
             }
 
         } catch (Exception e) {
-            ObjectMapper mapper = new ObjectMapper();
-            /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-            CommonMethods.responseProcess(resp, responseJson);*/
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             return;

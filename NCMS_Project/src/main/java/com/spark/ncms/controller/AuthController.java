@@ -39,12 +39,10 @@ public class AuthController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JsonObject jsonObject = CommonMethods.getJsonObject(req);
         ObjectMapper mapper = new ObjectMapper();
-
-        String userId = jsonObject.getString("userId");
-        String password = jsonObject.getString("password");
-
-
         try {
+            String userId = jsonObject.getString("userId");
+            String password = jsonObject.getString("password");
+
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try (Connection con = bds.getConnection()) {
                 //check the user is available
@@ -56,17 +54,14 @@ public class AuthController extends HttpServlet {
                     String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.SUCCESS, token, authUser));
                     CommonMethods.responseProcess(resp, responseJson);
                 } else {
-                    String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.UNAUTHORIZED, "UserId & Password Wrong..!", null));
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.UNAUTHORIZED, "UserId & Password is Wrong..!", null));
                     CommonMethods.responseProcess(resp, responseJson);
                 }
 
             }
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
-            return;
-
-
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "serverError!!!"+e.getMessage());
         }
     }
 

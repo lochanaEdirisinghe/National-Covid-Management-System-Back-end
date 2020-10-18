@@ -10,5 +10,6 @@ import lombok.*;
 public class HospitalCount {
     private String hospitalId;
     private String hospitalName;
+    private String district;
     private int Count;
 }

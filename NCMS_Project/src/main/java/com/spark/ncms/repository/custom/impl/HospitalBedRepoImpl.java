@@ -38,7 +38,6 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
 
     @Override
     public int getBedCount(String hospitalId, Connection con) throws SQLException, ClassNotFoundException {
-        List<HospitalBed> hospital_beds = new ArrayList<>();
         PreparedStatement pstm = con.prepareStatement("select count(id) from hospital_bed where hospital_id=? and patient_id is null");
         pstm.setObject(1, hospitalId);
         ResultSet rst = pstm.executeQuery();

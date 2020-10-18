@@ -19,8 +19,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String userCheck(String userId, String password, Connection con) throws SQLException {
-        System.out.println(userId+ password);
+    public String userCheck(String userId, String password, Connection con) throws Exception {
         User user = authRepository.userCheck(userId, password, con);
         if(user.isIsdoctor()){
             return "doctor"

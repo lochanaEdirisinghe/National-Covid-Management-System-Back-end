@@ -120,17 +120,6 @@ public class PatientRepoImpl implements PatientRepository {
         return patientCount;
 
     }
-/*
-    @Override
-    public PatientCount getDischargedPatientCount(Connection con) throws SQLException, ClassNotFoundException {
-        PreparedStatement pstm = con.prepareStatement("select count(id) from patient where discharge_date is not null");
-        ResultSet rst2 = pstm.executeQuery();
-        if (rst.next()) {
-            patientCount.setDischarged(rst2.getInt(1));
-
-        }
-        return patientCount;
-    }*/
 
 
 }

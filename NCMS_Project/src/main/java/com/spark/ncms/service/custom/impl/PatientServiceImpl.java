@@ -34,16 +34,8 @@ public class PatientServiceImpl implements PatientService {
         patientRepo = repoFactory.getRepo(RepoType.PATIENT);
     }
 
-
     @Override
     public PatientResponse savePatient(PatientDto patientDto, Connection con) throws SQLException, ClassNotFoundException {
-
-        String patientId = idGenerator(patientDto.getFirstName());
-        Patient patientEntity = new Patient(patientId, patientDto.getFirstName(), patientDto.getLastName(), patientDto.getDistrict(),
-                patientDto.getLocationX(), patientDto.getLocationY(), null, patientDto.getGender(), patientDto.getContactNo(),
-                patientDto.getEmail(), patientDto.getAge(), null, null, null, null);
-
-        boolean isPatientAdded = patientRepo.savePatient(patientEntity, con);
 
         int patientX = patientDto.getLocationX();
         int patientY = patientDto.getLocationY();
@@ -52,42 +44,52 @@ public class PatientServiceImpl implements PatientService {
         String finalHname = "";
         int queueNo = 0;
         ArrayList<Hospital> hospitalDetails = new ArrayList<>();
-
         List<String> hospitals = hospitalBedRepo.BedsAvailableHospitals(con);
-        if (!hospitals.isEmpty()) {
-            for (String Hid : hospitals) {
-                hospitalDetails.add(hospitalRepo.getHospital(Hid, con));
-            }
-            for (Hospital hospital : hospitalDetails) {
 
-                double distance = findDistance(hospital.getLocation_x(), hospital.getLocation_y(), patientX, patientY);
+        if (patientX <= 600 && patientY <= 600) {
+            String patientId = idGenerator(patientDto.getFirstName());
+            Patient patientEntity = new Patient(patientId, patientDto.getFirstName(), patientDto.getLastName(), patientDto.getDistrict(),
+                    patientDto.getLocationX(), patientDto.getLocationY(), null, patientDto.getGender(), patientDto.getContactNo(),
+                    patientDto.getEmail(), patientDto.getAge(), null, null, null, null);
 
-                if (minimumDistance == 0.0) {
-                    minimumDistance = distance;
-                    finalHid = hospital.getId();
-                    finalHname = hospital.getName();
-                } else {
-                    if (minimumDistance > distance) {
+            patientRepo.savePatient(patientEntity, con);
+
+            if (!hospitals.isEmpty()) {
+                for (String Hid : hospitals) {
+                    hospitalDetails.add(hospitalRepo.getHospital(Hid, con));
+                }
+                for (Hospital hospital : hospitalDetails) {
+
+                    double distance = findDistance(hospital.getLocation_x(), hospital.getLocation_y(), patientX, patientY);
+
+                    if (minimumDistance == 0.0) {
                         minimumDistance = distance;
                         finalHid = hospital.getId();
                         finalHname = hospital.getName();
+                    } else {
+                        if (minimumDistance > distance) {
+                            minimumDistance = distance;
+                            finalHid = hospital.getId();
+                            finalHname = hospital.getName();
+                        }
                     }
                 }
+
+                int bedId = hospitalBedRepo.getBedId(finalHid, con);
+                hospitalBedRepo.patientBedUpdate(finalHid, bedId, patientId, con);
+
+                return new PatientResponse(patientId, bedId, finalHname, 0);
+
             }
+            boolean addedToQueue = queueRepo.addToQueue(patientId, con);
+            if (addedToQueue) {
+                queueNo = queueRepo.getQueueNo(patientId, con);
+            }
+            return new PatientResponse(patientId, 0, finalHname, queueNo);
 
-            int bedId = hospitalBedRepo.getBedId(finalHid, con);
-            boolean isBedUpdated = hospitalBedRepo.patientBedUpdate(finalHid, bedId, patientId, con);
-
-            return new PatientResponse(patientId, bedId, finalHname, 0);
-
+        }else {
+            return null;
         }
-        boolean addedToQueue = queueRepo.addToQueue(patientId, con);
-        if (addedToQueue) {
-            queueNo = queueRepo.getQueueNo(patientId, con);
-        }
-
-        return new PatientResponse(patientId, 0, finalHname, queueNo);
-
     }
 
     @Override
@@ -139,7 +141,7 @@ public class PatientServiceImpl implements PatientService {
         List<Hospital> allHospitals = hospitalRepo.getAllHospitals(con);
         for (Hospital h: allHospitals){
             int patients = 10 - (hospitalBedRepo.getBedCount(h.getId(), con));
-            patientCount.add(new HospitalCount(h.getId(), h.getName(), patients));
+            patientCount.add(new HospitalCount(h.getId(), h.getName(),h.getDistrict(), patients));
         }
         return patientCount;
     }

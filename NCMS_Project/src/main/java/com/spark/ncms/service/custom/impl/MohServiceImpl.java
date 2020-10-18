@@ -50,7 +50,7 @@ public class MohServiceImpl implements MohService {
         List<Hospital> allHospitals = hospitalRepo.getAllHospitals(con);
         for (Hospital h : allHospitals) {
             int bedCount = hospitalBedRepository.getBedCount(h.getId(), con);
-            bedCounts.add(new HospitalCount(h.getId(), h.getName(), bedCount));
+            bedCounts.add(new HospitalCount(h.getId(), h.getName(),h.getDistrict(), bedCount));
         }
         return bedCounts;
     }
