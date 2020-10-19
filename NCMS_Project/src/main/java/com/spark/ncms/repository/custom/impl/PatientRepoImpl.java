@@ -41,15 +41,16 @@ public class PatientRepoImpl implements PatientRepository {
     }
 
     @Override
-    public boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException {
+    public boolean updatePatient(String patientId, String doctorId, String slevel, String doctorRole, Connection con) throws SQLException, ClassNotFoundException {
         Calendar calendar = Calendar.getInstance();
         java.util.Date currentDate = calendar.getTime();
         java.sql.Date date = new java.sql.Date(currentDate.getTime());
         if (doctorRole.equals("admit")) {
-            PreparedStatement pstm = con.prepareStatement("update patient set admitted_by=?, admit_date=? where id=?");
+            PreparedStatement pstm = con.prepareStatement("update patient set admitted_by=?, admit_date=?, severity_level=? where id=?");
             pstm.setObject(1, doctorId);
             pstm.setObject(2, date);
-            pstm.setObject(3, patientId);
+            pstm.setObject(3, slevel);
+            pstm.setObject(4, patientId);
             int i = pstm.executeUpdate();
             if (i > 0) {
                 return true;

@@ -171,12 +171,13 @@ public class patientController extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String patientId = req.getParameter("patientId");
         String doctorId = req.getParameter("doctorId");
+        String slevel = req.getParameter("slevel");
         String doctorRole = req.getParameter("doctorRole"); //addmit or discharged
 
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try (Connection con = bds.getConnection()) {
-                boolean isUpdated = patientService.updatePatient(patientId, doctorId, doctorRole, con);
+                boolean isUpdated = patientService.updatePatient(patientId, doctorId, slevel, doctorRole, con);
                 ObjectMapper mapper = new ObjectMapper();
                 if (isUpdated) {
                     String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isUpdated));

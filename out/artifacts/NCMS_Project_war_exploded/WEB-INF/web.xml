@@ -15,8 +15,9 @@
         <filter-name>CORS</filter-name>
         <url-pattern>/api/v1/doctor</url-pattern>
         <url-pattern>/api/v1/moh/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
+        <url-pattern>/api/v1/auth/login</url-pattern>
     </filter-mapping>
-
 
 </web-app>
 

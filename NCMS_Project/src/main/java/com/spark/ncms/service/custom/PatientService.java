@@ -14,7 +14,7 @@ public interface PatientService extends SuperSevice {
     PatientResponse savePatient(PatientDto patientDto, Connection con) throws SQLException, SQLException, ClassNotFoundException;
     PatientDto getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException;
     List<PatientDto> getAllPatient(Connection con) throws SQLException, ClassNotFoundException;
-    boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException;
+    boolean updatePatient(String patientId, String doctorId,String slevel, String doctorRole, Connection con) throws SQLException, ClassNotFoundException;
     PatientCount getPatientCount(Connection con)throws SQLException, ClassNotFoundException;
     List<HospitalCount> getHospitalPatientCount(Connection con)throws SQLException, ClassNotFoundException;
 }

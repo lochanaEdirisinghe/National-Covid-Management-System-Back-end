@@ -17,6 +17,9 @@ Doctor can see number of beds and details of the beds of his hospitslal. Also he
 
 Moh can see queue statics and can add new hospitals to the system. Also Moh can see hospital bed statics in hospital level, district level and country level.
 
+Doctors - D001, D002, D003, D004, D005 & password is "doc123" for all
+MOH - M001 & password is "moh123"
+
 
 
 

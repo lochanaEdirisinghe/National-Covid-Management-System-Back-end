@@ -1,12 +1,15 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="NCMS_Project:war exploded">
-    <output-path>$PROJECT_DIR$/NCMS_Project/target/NCMS_Project-1.0.0</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/NCMS_Project_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="NCMS_Project" />
+          <element id="library" level="project" name="javax.json.processing-1.1.4" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.json.bind-api-1.0" />
+          <element id="library" level="project" name="JAX-RS-2.1.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.1" />
@@ -24,9 +27,6 @@
           <element id="library" level="project" name="Maven: com.thetransactioncompany:cors-filter:2.9" />
           <element id="library" level="project" name="Maven: com.thetransactioncompany:java-property-utils:1.15" />
         </element>
-      </element>
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/NCMS_Project/target/NCMS_Project-1.0.0/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="NCMS_Project/web/Web" />
     </root>

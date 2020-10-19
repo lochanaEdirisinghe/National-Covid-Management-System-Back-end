@@ -113,12 +113,12 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean updatePatient(String patientId, String doctorId, String doctorRole, Connection con) throws SQLException, ClassNotFoundException {
+    public boolean updatePatient(String patientId, String doctorId, String slevel, String doctorRole, Connection con) throws SQLException, ClassNotFoundException {
         if (doctorRole.equals("admit")) {
-            boolean isUpdated = patientRepo.updatePatient(patientId, doctorId, doctorRole, con);
+            boolean isUpdated = patientRepo.updatePatient(patientId, doctorId, slevel, doctorRole, con);
             return isUpdated;
         } else if (doctorRole.equals("discharge")) {
-            boolean isUpdatedPatient = patientRepo.updatePatient(patientId, doctorId, doctorRole, con);
+            boolean isUpdatedPatient = patientRepo.updatePatient(patientId, doctorId,  slevel, doctorRole, con);
             boolean isUpdatedHosBed = hospitalBedRepo.updateHospitalBed(patientId, con);
             if (isUpdatedPatient == true && isUpdatedHosBed == true) {
                 return true;
