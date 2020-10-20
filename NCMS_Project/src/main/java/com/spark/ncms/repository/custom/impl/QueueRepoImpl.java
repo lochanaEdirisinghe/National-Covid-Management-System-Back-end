@@ -45,4 +45,14 @@ public class QueueRepoImpl implements QueueRepository {
         return queueList;
 
     }
+
+    @Override
+    public boolean deleteQueue(Connection con) throws SQLException, ClassNotFoundException {
+        PreparedStatement pstm = con.prepareStatement("delete from patient_queue");
+        int i = pstm.executeUpdate();
+        if (i>0){
+            return true;
+        }
+        return false;
+    }
 }

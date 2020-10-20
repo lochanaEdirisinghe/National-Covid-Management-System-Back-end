@@ -110,9 +110,6 @@ public class MohController extends HttpServlet {
             }
 
         } catch (Exception e) {
-            ObjectMapper mapper = new ObjectMapper();
-            /*String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-            CommonMethods.responseProcess(resp, responseJson);*/
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             return;
@@ -120,5 +117,26 @@ public class MohController extends HttpServlet {
         }
 
 
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String hospitalId = req.getParameter("hospitalId");
+        try {
+            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+            try (Connection con = bds.getConnection()) {
+                boolean updated = mohService.updateQueue(hospitalId, con);
+                ObjectMapper mapper = new ObjectMapper();
+                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", updated));
+                CommonMethods.responseProcess(resp, responseJson);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            return;
+
+        }
     }
 }

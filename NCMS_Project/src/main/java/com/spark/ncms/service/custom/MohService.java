@@ -12,4 +12,5 @@ public interface MohService extends SuperSevice {
     List<QueueDto> getQueueDetails(Connection con) throws SQLException, ClassNotFoundException;
     boolean addNewHospital(HospitalDto hospitalDto, Connection con) throws SQLException, ClassNotFoundException;
     List<HospitalCount> getBedCount(Connection con) throws SQLException, ClassNotFoundException;
+    boolean updateQueue(String hospitalId, Connection con) throws SQLException, ClassNotFoundException;
 }

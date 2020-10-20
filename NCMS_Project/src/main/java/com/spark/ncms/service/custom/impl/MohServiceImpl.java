@@ -54,4 +54,22 @@ public class MohServiceImpl implements MohService {
         }
         return bedCounts;
     }
+
+    @Override
+    public boolean updateQueue(String hospitalId, Connection con) throws SQLException, ClassNotFoundException {
+        boolean isupdated = false;
+        List<PatientQueue> queuePatients = queueRepo.getQueuePatients(con);
+        for (PatientQueue p : queuePatients) {
+            int bedId = hospitalBedRepository.getBedId(hospitalId, con);
+             isupdated= hospitalBedRepository.patientBedUpdate(hospitalId, bedId, p.getPatientId(), con);
+            System.out.println(isupdated);
+        }
+
+        boolean isdelete = queueRepo.deleteQueue(con);
+
+        if(isdelete==true && isupdated==true){
+            return true;
+        }
+        return false;
+    }
 }

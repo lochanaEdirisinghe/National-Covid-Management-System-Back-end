@@ -48,5 +48,18 @@ public class DoctorServiceImpl implements DoctorService {
         return new HospitaBedResponse(hospitalId, hospitalName, null);
     }
 
+    @Override
+    public boolean isDirector(String doctorId, Connection con) throws SQLException, ClassNotFoundException {
+        boolean isdirector = doctorRepo.isDirector(doctorId, con);
+        return isdirector;
+
+    }
+
+    @Override
+    public boolean updateDoctor(String doctorId, String hospitalId, Connection con) throws SQLException, ClassNotFoundException {
+        boolean isUpdated = doctorRepo.updateDoctor(doctorId, hospitalId, con);
+        return isUpdated;
+    }
+
 
 }

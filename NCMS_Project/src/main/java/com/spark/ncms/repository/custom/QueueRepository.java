@@ -10,4 +10,5 @@ public interface QueueRepository extends SuperRepository {
     boolean addToQueue(String patientId, Connection con) throws SQLException, ClassNotFoundException;
     int getQueueNo(String patientId, Connection con) throws SQLException, ClassNotFoundException;
     List<PatientQueue> getQueuePatients(Connection con) throws SQLException, ClassNotFoundException;
+    boolean deleteQueue(Connection con)throws SQLException, ClassNotFoundException;
 }

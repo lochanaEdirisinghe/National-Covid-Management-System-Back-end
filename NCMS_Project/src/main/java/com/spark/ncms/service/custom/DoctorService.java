@@ -10,5 +10,8 @@ import java.sql.SQLException;
 
 public interface DoctorService extends SuperSevice{
     HospitaBedResponse getHospitalBedList(String doctorId, Connection con) throws SQLException, ClassNotFoundException;
+    boolean isDirector(String doctorId, Connection con) throws SQLException, ClassNotFoundException;
+    boolean updateDoctor(String doctorId, String hospitalId, Connection con)throws SQLException, ClassNotFoundException;
+
 
 }
