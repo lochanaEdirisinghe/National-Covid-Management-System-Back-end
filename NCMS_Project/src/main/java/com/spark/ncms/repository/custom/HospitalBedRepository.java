@@ -1,6 +1,7 @@
 package com.spark.ncms.repository.custom;
 
 import com.spark.ncms.entity.HospitalBed;
+import com.spark.ncms.entity.PatientBedHospital;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,4 +16,6 @@ public interface HospitalBedRepository extends SuperRepository{
    int getBedId(String hospitalId, Connection con) throws SQLException, ClassNotFoundException;
    boolean patientBedUpdate(String hospitalId, int bedId, String patientId, Connection con) throws SQLException, ClassNotFoundException;
    boolean addHospitalBed(String hospitalId, Connection con) throws SQLException, ClassNotFoundException;
+   PatientBedHospital getPatientBed(String patientId, Connection con) throws SQLException, ClassNotFoundException;
+
 }

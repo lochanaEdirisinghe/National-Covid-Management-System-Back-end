@@ -2,12 +2,13 @@ package com.spark.ncms.service.custom.impl;
 
 import com.spark.ncms.dto.HospitalCount;
 import com.spark.ncms.dto.PatientCount;
+import com.spark.ncms.entity.*;
 import com.spark.ncms.repository.RepoFactory;
 import com.spark.ncms.repository.RepoType;
 import com.spark.ncms.repository.custom.*;
 import com.spark.ncms.dto.PatientDto;
-import com.spark.ncms.entity.Hospital;
-import com.spark.ncms.entity.Patient;
+import com.spark.ncms.response.HospitaBedResponse;
+import com.spark.ncms.response.HospitalBedRespDto;
 import com.spark.ncms.service.custom.PatientService;
 import com.spark.ncms.response.PatientResponse;
 import com.spark.ncms.service.custom.SuperSevice;
@@ -25,6 +26,7 @@ public class PatientServiceImpl implements PatientService {
     private HospitalBedRepository hospitalBedRepo;
     private PatientRepository patientRepo;
     private RepoFactory repoFactory;
+    //private RepoFactory doctorRepo;
 
     public PatientServiceImpl() {
         this.repoFactory=RepoFactory.getInstance();
@@ -32,6 +34,7 @@ public class PatientServiceImpl implements PatientService {
         queueRepo = repoFactory.getRepo(RepoType.PATIENT_QUEUE);
         hospitalBedRepo = repoFactory.getRepo(RepoType.HOSPITAL_BED);
         patientRepo = repoFactory.getRepo(RepoType.PATIENT);
+        //doctorRepo = repoFactory.getRepo(RepoType.DOCTOR);
     }
 
     @Override
@@ -95,22 +98,36 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientDto getPatient(String patientId, Connection con) throws SQLException, ClassNotFoundException {
         Patient patient = patientRepo.getPatient(patientId, con);
+        PatientBedHospital patientBed = hospitalBedRepo.getPatientBed(patientId, con);
+        List<PatientQueue> queuePatients = queueRepo.getQueuePatients(con);
+        for (PatientQueue q: queuePatients){
+            if(q.getPatientId().equals(patient.getId())){
+                return new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(), patient.getDistrict(), patient.getLocationX(),
+                        patient.getLocationY(), patient.getSeverity_level(), patient.getGender(), patient.getContact(), patient.getEmail(), patient.getAge(),
+                        null, null, null, null, 0, null, q.getQueueId());
+
+            }
+        }
         return new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(), patient.getDistrict(), patient.getLocationX(),
                 patient.getLocationY(), patient.getSeverity_level(), patient.getGender(), patient.getContact(), patient.getEmail(), patient.getAge(),
-                patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by());
+                patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by(), patientBed.getBedId(), patientBed.getHId(), 0);
     }
 
     @Override
     public List<PatientDto> getAllPatient(Connection con) throws SQLException, ClassNotFoundException {
-        List<PatientDto> allpatients = new ArrayList<>();
-        List<Patient> allPatient = patientRepo.getAllPatient(con);
-        for (Patient patient : allPatient) {
-            allpatients.add(new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(), patient.getDistrict(), patient.getLocationX(),
+
+        List<PatientDto> patientList = new ArrayList<>();
+        List<HospitalBed> hospitalBedList = hospitalBedRepo.getHospitalBedList(null,con);
+        for (HospitalBed hospitalBed: hospitalBedList) {
+            Patient patient = patientRepo.getPatient(hospitalBed.getPatientId(), con);
+            patientList.add(new PatientDto(patient.getId(), patient.getFirstName(), patient.getLastName(), patient.getDistrict(), patient.getLocationX(),
                     patient.getLocationY(), patient.getSeverity_level(), patient.getGender(), patient.getContact(), patient.getEmail(), patient.getAge(),
-                    patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by()));
+                    patient.getAdmit_date(), patient.getAdmitted_by(), patient.getDischarge_date(), patient.getDischarged_by(), hospitalBed.getBedId(), hospitalBed.getHospitalId(), 0));
         }
-        return allpatients;
-    }
+
+        return patientList;
+
+        }
 
     @Override
     public boolean updatePatient(String patientId, String doctorId, String slevel, String doctorRole, Connection con) throws SQLException, ClassNotFoundException {

@@ -27,6 +27,7 @@ public class DoctorController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String doctorId = req.getParameter("doctorId");
 
         switch (req.getPathInfo()) {
@@ -37,7 +38,7 @@ public class DoctorController extends HttpServlet {
                         boolean isdirector = doctorService.isDirector(doctorId, con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  isdirector));
-                        CommonMethods.responseProcess(resp, responseJson);
+                        CommonMethods.responseProcess(req, resp, responseJson);
                     }
 
                 } catch (Exception e) {
@@ -55,7 +56,7 @@ public class DoctorController extends HttpServlet {
                         HospitaBedResponse hospitaBedResponse = doctorService.getHospitalBedList(doctorId, con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  hospitaBedResponse));
-                        CommonMethods.responseProcess(resp, responseJson);
+                        CommonMethods.responseProcess(req,resp, responseJson);
                     }
 
                 } catch (Exception e) {
@@ -71,6 +72,7 @@ public class DoctorController extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String hospitalId = req.getParameter("hospitalId");
         String doctorId = req.getParameter("doctorId");
         try {
@@ -79,7 +81,7 @@ public class DoctorController extends HttpServlet {
                 boolean isUpdated = doctorService.updateDoctor(doctorId, hospitalId, con);
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  isUpdated));
-                CommonMethods.responseProcess(resp, responseJson);
+                CommonMethods.responseProcess(req,resp, responseJson);
             }
 
         } catch (Exception e) {
@@ -89,5 +91,26 @@ public class DoctorController extends HttpServlet {
 
         }
 
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String hospitalId = req.getParameter("hospitalId");
+        String doctorId = req.getParameter("doctorId");
+        try {
+            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+            try (Connection con = bds.getConnection()) {
+                boolean isUpdated = doctorService.updateDoctor(doctorId, hospitalId, con);
+                ObjectMapper mapper = new ObjectMapper();
+                String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  isUpdated));
+                CommonMethods.responseProcess(req,resp, responseJson);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            return;
+
+        }
     }
 }

@@ -32,6 +32,7 @@ public class MohController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
         switch (req.getPathInfo()) {
 
             case "/queue":
@@ -42,13 +43,13 @@ public class MohController extends HttpServlet {
                         List<QueueDto> queuePatients = mohService.getQueueDetails(con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", queuePatients));
-                        CommonMethods.responseProcess(resp, responseJson);
+                        CommonMethods.responseProcess(req, resp, responseJson);
                     }
 
                 } catch (Exception e) {
                     ObjectMapper mapper = new ObjectMapper();
                     String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    CommonMethods.responseProcess(resp, responseJson);
+                    CommonMethods.responseProcess(req, resp, responseJson);
                     e.printStackTrace();
                     resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
                     return;
@@ -65,13 +66,13 @@ public class MohController extends HttpServlet {
                         List<HospitalCount> bedCount = mohService.getBedCount(con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedCount));
-                        CommonMethods.responseProcess(resp, responseJson);
+                        CommonMethods.responseProcess(req, resp, responseJson);
                     }
 
                 } catch (Exception e) {
                     ObjectMapper mapper = new ObjectMapper();
                     String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
-                    CommonMethods.responseProcess(resp, responseJson);
+                    CommonMethods.responseProcess(req, resp, responseJson);
                     e.printStackTrace();
                     resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
                     return;
@@ -82,7 +83,7 @@ public class MohController extends HttpServlet {
             default:
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "url is not valid"));
-                CommonMethods.responseProcess(resp, responseJson);
+                CommonMethods.responseProcess(req,resp, responseJson);
 
         }
 
@@ -90,6 +91,8 @@ public class MohController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         JsonObject jsonObject = CommonMethods.getJsonObject(req);
 
         String id = jsonObject.getString("hospitalId");
@@ -106,7 +109,7 @@ public class MohController extends HttpServlet {
                 boolean isAdded = mohService.addNewHospital(hospitalDto, con);
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isAdded));
-                CommonMethods.responseProcess(resp, responseJson);
+                CommonMethods.responseProcess(req, resp, responseJson);
             }
 
         } catch (Exception e) {
@@ -122,6 +125,7 @@ public class MohController extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
         String hospitalId = req.getParameter("hospitalId");
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
@@ -129,7 +133,28 @@ public class MohController extends HttpServlet {
                 boolean updated = mohService.updateQueue(hospitalId, con);
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", updated));
-                CommonMethods.responseProcess(resp, responseJson);
+                CommonMethods.responseProcess(req, resp, responseJson);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            return;
+
+        }
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String hospitalId = req.getParameter("hospitalId");
+        try {
+            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+            try (Connection con = bds.getConnection()) {
+                boolean updated = mohService.updateQueue(hospitalId, con);
+                ObjectMapper mapper = new ObjectMapper();
+                String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", updated));
+                CommonMethods.responseProcess(req, resp, responseJson);
             }
 
         } catch (Exception e) {

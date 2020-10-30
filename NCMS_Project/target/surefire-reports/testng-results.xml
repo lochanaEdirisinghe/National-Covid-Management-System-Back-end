@@ -2,26 +2,26 @@
 <testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="TestNgMavenExampleSuite" duration-ms="67" started-at="2020-10-20T10:05:36 IST" finished-at="2020-10-20T10:05:36 IST">
+  <suite name="TestNgMavenExampleSuite" duration-ms="77" started-at="2020-10-27T01:51:31 IST" finished-at="2020-10-27T01:51:31 IST">
     <groups>
     </groups>
-    <test name="TestNgMavenTest" duration-ms="67" started-at="2020-10-20T10:05:36 IST" finished-at="2020-10-20T10:05:36 IST">
+    <test name="TestNgMavenTest" duration-ms="77" started-at="2020-10-27T01:51:31 IST" finished-at="2020-10-27T01:51:31 IST">
       <class name="com.spark.ncms.test.DoctorServiceImplTest">
-        <test-method status="PASS" signature="testMocking()[pri:0, instance:com.spark.ncms.test.DoctorServiceImplTest@31a5c39e]" name="testMocking" duration-ms="0" started-at="2020-10-20T10:05:36 IST" finished-at="2020-10-20T10:05:36 IST">
+        <test-method status="PASS" signature="testMocking()[pri:0, instance:com.spark.ncms.test.DoctorServiceImplTest@31a5c39e]" name="testMocking" duration-ms="0" started-at="2020-10-27T01:51:31 IST" finished-at="2020-10-27T01:51:31 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testMocking -->
       </class> <!-- com.spark.ncms.test.DoctorServiceImplTest -->
       <class name="com.spark.ncms.test.PatientServiceImplTest">
-        <test-method status="PASS" signature="testTimeOut()[pri:0, instance:com.spark.ncms.test.PatientServiceImplTest@5f2108b5]" name="testTimeOut" duration-ms="10" started-at="2020-10-20T10:05:36 IST" finished-at="2020-10-20T10:05:36 IST">
+        <test-method status="PASS" signature="testTimeOut()[pri:0, instance:com.spark.ncms.test.PatientServiceImplTest@5f2108b5]" name="testTimeOut" duration-ms="8" started-at="2020-10-27T01:51:31 IST" finished-at="2020-10-27T01:51:31 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testTimeOut -->
-        <test-method status="PASS" signature="testDistance()[pri:0, instance:com.spark.ncms.test.PatientServiceImplTest@5f2108b5]" name="testDistance" duration-ms="4" started-at="2020-10-20T10:05:36 IST" finished-at="2020-10-20T10:05:36 IST">
+        <test-method status="PASS" signature="testDistance()[pri:0, instance:com.spark.ncms.test.PatientServiceImplTest@5f2108b5]" name="testDistance" duration-ms="3" started-at="2020-10-27T01:51:31 IST" finished-at="2020-10-27T01:51:31 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDistance -->
-        <test-method status="PASS" signature="testPatientId()[pri:0, instance:com.spark.ncms.test.PatientServiceImplTest@5f2108b5]" name="testPatientId" duration-ms="1" started-at="2020-10-20T10:05:36 IST" depends-on-methods="com.spark.ncms.test.PatientServiceImplTest.testTimeOut" finished-at="2020-10-20T10:05:36 IST">
+        <test-method status="PASS" signature="testPatientId()[pri:0, instance:com.spark.ncms.test.PatientServiceImplTest@5f2108b5]" name="testPatientId" duration-ms="0" started-at="2020-10-27T01:51:31 IST" depends-on-methods="com.spark.ncms.test.PatientServiceImplTest.testTimeOut" finished-at="2020-10-27T01:51:31 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testPatientId -->

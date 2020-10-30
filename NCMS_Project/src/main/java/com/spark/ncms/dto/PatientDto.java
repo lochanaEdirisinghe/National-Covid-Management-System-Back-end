@@ -24,5 +24,8 @@ public class PatientDto {
      private String admittedBy;
      private String dischargedDate;
      private String dischargedBy;
+     private int bedId;
+     private String hospitalId;
+     private int queueNo;
 
 }

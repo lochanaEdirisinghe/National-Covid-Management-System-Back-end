@@ -1,6 +1,7 @@
 package com.spark.ncms.repository.custom.impl;
 
 import com.spark.ncms.entity.HospitalBed;
+import com.spark.ncms.entity.PatientBedHospital;
 import com.spark.ncms.repository.custom.HospitalBedRepository;
 
 import java.sql.Connection;
@@ -25,6 +26,15 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
 
     @Override
     public List<HospitalBed> getHospitalBedList(String hospitalId, Connection con) throws SQLException, ClassNotFoundException {
+        if(hospitalId==null){
+            List<HospitalBed> hospital_beds = new ArrayList<>();
+            PreparedStatement pstm = con.prepareStatement("select * from hospital_bed where patient_id is not null");
+            ResultSet rst = pstm.executeQuery();
+            while (rst.next()) {
+                hospital_beds.add(new HospitalBed(rst.getInt(1), rst.getString(2), rst.getString(3)));
+            }
+            return hospital_beds;
+        }
         List<HospitalBed> hospital_beds = new ArrayList<>();
         PreparedStatement pstm = con.prepareStatement("select * from hospital_bed where hospital_id=? and patient_id is not null");
         pstm.setObject(1, hospitalId);
@@ -95,5 +105,18 @@ public class HospitalBedRepoImpl implements HospitalBedRepository {
             pstm.executeUpdate();
         }
         return true;
+    }
+
+    @Override
+    public PatientBedHospital getPatientBed(String patientId, Connection con) throws SQLException, ClassNotFoundException {
+        PreparedStatement pstm = con.prepareStatement("select id, hospital_id from hospital_bed where patient_id =?");
+        pstm.setObject(1, patientId);
+        ResultSet rst = pstm.executeQuery();
+        if (rst.next()) {
+            return new PatientBedHospital(rst.getInt(1), rst.getString(2));
+
+        }
+
+        return null;
     }
 }

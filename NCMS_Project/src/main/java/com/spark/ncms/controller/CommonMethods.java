@@ -11,13 +11,18 @@ import java.io.PrintWriter;
 
 public class CommonMethods {
 
-    public static void responseProcess(HttpServletResponse resp, String responseJson)  {
+    public static void responseProcess(HttpServletRequest req, HttpServletResponse resp, String responseJson)  {
         PrintWriter out = null;
         try {
             out = resp.getWriter();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String origin = req.getHeader("Origin");
+        resp.setHeader("Access-Control-Allow-Origin", origin);
+        resp.setHeader("Access-Control-Allow-Headers", "*");
+        resp.setHeader("Access-Control-Allow-Methods", "*");
+
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         out.print(responseJson);
@@ -35,4 +40,5 @@ public class CommonMethods {
         JsonObject jsonObject = reader.readObject();
         return jsonObject;
     }
+
 }

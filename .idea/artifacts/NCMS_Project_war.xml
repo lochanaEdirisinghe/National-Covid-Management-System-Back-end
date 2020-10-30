@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="NCMS_Project:war">
-    <output-path>$PROJECT_DIR$/NCMS_Project/target</output-path>
-    <root id="archive" name="NCMS_Project-1.0.0.war">
-      <element id="artifact" artifact-name="NCMS_Project:war exploded" />
-    </root>
-  </artifact>
-</component>

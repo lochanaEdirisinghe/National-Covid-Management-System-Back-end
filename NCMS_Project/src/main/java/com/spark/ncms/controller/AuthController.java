@@ -37,6 +37,7 @@ public class AuthController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         JsonObject jsonObject = CommonMethods.getJsonObject(req);
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -52,10 +53,10 @@ public class AuthController extends HttpServlet {
                     String token = jwtUtil.createToken(userId);
                     AuthUser authUser = new AuthUser(userId, password, role);
                     String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.SUCCESS, token, authUser));
-                    CommonMethods.responseProcess(resp, responseJson);
+                    CommonMethods.responseProcess(req,resp, responseJson);
                 } else {
                     String responseJson = mapper.writeValueAsString(new StandardResponse(ResponseCode.UNAUTHORIZED, "UserId & Password is Wrong..!", null));
-                    CommonMethods.responseProcess(resp, responseJson);
+                    CommonMethods.responseProcess(req,resp, responseJson);
                 }
 
             }
