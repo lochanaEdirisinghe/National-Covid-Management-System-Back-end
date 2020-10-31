@@ -196,4 +196,34 @@ public class PatientController extends HttpServlet {
 
         }
     }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String patientId = req.getParameter("patientId");
+        String doctorId = req.getParameter("doctorId");
+        String slevel = req.getParameter("slevel");
+        String doctorRole = req.getParameter("doctorRole"); //addmit or discharged
+
+
+        try {
+            BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+            try (Connection con = bds.getConnection()) {
+                boolean isUpdated = patientService.updatePatient(patientId, doctorId, slevel, doctorRole, con);
+                ObjectMapper mapper = new ObjectMapper();
+                if (isUpdated) {
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isUpdated));
+                    CommonMethods.responseProcess(req,resp, responseJson);
+                } else if (!isUpdated) {
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", isUpdated));
+                    CommonMethods.responseProcess(req,resp, responseJson);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+            return;
+
+        }
+    }
 }

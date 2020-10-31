@@ -32,12 +32,14 @@ com\spark\ncms\dto\HospitalCount.class
 com\spark\ncms\service\custom\MohService.class
 com\spark\ncms\service\ServiceType.class
 com\spark\ncms\repository\custom\impl\QueueRepoImpl.class
+com\spark\ncms\controller\PatientController.class
 com\spark\ncms\service\ServiceFactory$1.class
 com\spark\ncms\entity\PatientQueue.class
 com\spark\ncms\repository\custom\AuthRepository.class
 com\spark\ncms\service\ServiceFactory.class
 com\spark\ncms\repository\custom\PatientRepository.class
 com\spark\ncms\response\PatientResponse.class
+com\spark\ncms\entity\PatientBedHospital.class
 com\spark\ncms\service\custom\PatientService.class
 com\spark\ncms\response\StandardResponse.class
 com\spark\ncms\entity\Hospital.class
@@ -51,5 +53,4 @@ com\spark\ncms\service\custom\impl\DoctorServiceImpl.class
 com\spark\ncms\repository\custom\HospitalRepository.class
 com\spark\ncms\controller\DoctorController.class
 com\spark\ncms\controller\AuthController.class
-com\spark\ncms\controller\patientController.class
 com\spark\ncms\repository\custom\impl\HospitalBedRepoImpl.class

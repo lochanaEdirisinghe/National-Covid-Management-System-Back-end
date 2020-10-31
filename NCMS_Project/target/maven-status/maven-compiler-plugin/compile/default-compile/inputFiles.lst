@@ -1,11 +1,12 @@
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\repository\custom\impl\HospitalBedRepoImpl.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\dto\PatientDto.java
+F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\entity\PatientBedHospital.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\dto\HospitalCount.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\entity\Patient.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\service\custom\impl\MohServiceImpl.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\repository\custom\DoctorRepository.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\service\ServiceType.java
-F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\controller\patientController.java
+F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\controller\PatientController.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\repository\custom\impl\PatientRepoImpl.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\service\custom\PatientService.java
 F:\Spark_Training\NCMS_Project\NCMS_SystemUpdated\National-Covid-Management-System\NCMS_Project\src\main\java\com\spark\ncms\repository\RepoType.java

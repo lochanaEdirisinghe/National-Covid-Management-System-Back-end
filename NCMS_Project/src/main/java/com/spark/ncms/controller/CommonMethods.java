@@ -18,10 +18,10 @@ public class CommonMethods {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String origin = req.getHeader("Origin");
+ /*       String origin = req.getHeader("Origin");
         resp.setHeader("Access-Control-Allow-Origin", origin);
         resp.setHeader("Access-Control-Allow-Headers", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "*");
+        resp.setHeader("Access-Control-Allow-Methods", "*");*/
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

@@ -14,11 +14,11 @@ public class DbListner implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         BasicDataSource bds = new BasicDataSource();
         bds.setDriverClassName("com.mysql.jdbc.Driver");
-        bds.setUrl("jdbc:mysql://localhost:3306/ncms");
-        /*bds.setUrl("jdbc:mysql://ncms.cwzsslvpi7qv.us-east-1.rds.amazonaws.com:3306/ncms");*/
+        //bds.setUrl("jdbc:mysql://localhost:3306/ncms");
+        bds.setUrl("jdbc:mysql://ncms.cwzsslvpi7qv.us-east-1.rds.amazonaws.com:3306/ncms");
         bds.setUsername("root");
-        /*bds.setPassword("lochanapc12");*/
-        bds.setPassword("ijse");
+        bds.setPassword("lochanapc12");
+        //bds.setPassword("ijse");
         bds.setMaxTotal(6);
         bds.setInitialSize(6);
         sce.getServletContext().setAttribute("db", bds);
