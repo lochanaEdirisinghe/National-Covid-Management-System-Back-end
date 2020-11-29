@@ -3,6 +3,7 @@ package com.spark.ncms.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spark.ncms.dto.HospitalCount;
 import com.spark.ncms.dto.HospitalDto;
+import com.spark.ncms.dto.HospitalDto2;
 import com.spark.ncms.dto.QueueDto;
 import com.spark.ncms.response.StandardResponse;
 import com.spark.ncms.service.ServiceFactory;
@@ -62,9 +63,31 @@ public class MohController extends HttpServlet {
                 try {
                     BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
                     try (Connection con = bds.getConnection()) {
-                        List<HospitalCount> bedCount = mohService.getBedCount(con);
+                        List<HospitalCount> bedCount = mohService.getHopspitalCount(con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", bedCount));
+                        CommonMethods.responseProcess(req, resp, responseJson);
+                    }
+
+                } catch (Exception e) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    String responseJson = mapper.writeValueAsString(new StandardResponse(500, "false", "an error occured"));
+                    CommonMethods.responseProcess(req, resp, responseJson);
+                    e.printStackTrace();
+                    resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                    return;
+
+                }
+                break;
+
+            case "/hospital":
+
+                try {
+                    BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
+                    try (Connection con = bds.getConnection()) {
+                        List<HospitalDto2> allHopspitals = mohService.getAllHopspitals(con);
+                        ObjectMapper mapper = new ObjectMapper();
+                        String responseJson = mapper.writeValueAsString(new StandardResponse(200, "true", allHopspitals));
                         CommonMethods.responseProcess(req, resp, responseJson);
                     }
 

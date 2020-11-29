@@ -45,7 +45,7 @@ public class MohServiceImpl implements MohService {
     }
 
     @Override
-    public List<HospitalCount> getBedCount(Connection con) throws SQLException, ClassNotFoundException {
+    public List<HospitalCount> getHopspitalCount(Connection con) throws SQLException, ClassNotFoundException {
         List<HospitalCount> bedCounts = new ArrayList<>();
         List<Hospital> allHospitals = hospitalRepo.getAllHospitals(con);
         for (Hospital h : allHospitals) {
@@ -71,5 +71,18 @@ public class MohServiceImpl implements MohService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<HospitalDto2> getAllHopspitals(Connection con) throws SQLException, ClassNotFoundException {
+        List<HospitalDto2> hospitals = new ArrayList<>();
+        List<Hospital> allHospitals = hospitalRepo.getAllHospitals(con);
+        for (Hospital hospital: allHospitals) {
+            int bedCount = hospitalBedRepository.getBedCount(hospital.getId(), con);
+            hospitals.add(new HospitalDto2(hospital.getId(), hospital.getName(), hospital.getDistrict(),
+                    bedCount, hospital.getLocation_x(), hospital.getLocation_y()));
+        }
+
+        return hospitals;
     }
 }

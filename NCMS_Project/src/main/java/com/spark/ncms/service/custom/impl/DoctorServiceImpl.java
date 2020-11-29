@@ -1,5 +1,8 @@
 package com.spark.ncms.service.custom.impl;
 
+import com.spark.ncms.dto.DoctorDto;
+import com.spark.ncms.dto.DoctorDto2;
+import com.spark.ncms.entity.Doctor;
 import com.spark.ncms.entity.Hospital;
 import com.spark.ncms.entity.Patient;
 import com.spark.ncms.repository.RepoFactory;
@@ -61,5 +64,37 @@ public class DoctorServiceImpl implements DoctorService {
         return isUpdated;
     }
 
+    @Override
+    public List<DoctorDto> getAllDoctors(String hospitalId, Connection con) throws SQLException {
+        List<DoctorDto> doctorDtos=new ArrayList<>();
+        List<Doctor> doctorList = doctorRepo.getDoctorList(hospitalId, con);
+        for (Doctor doctor: doctorList) {
+
+            doctorDtos.add(new DoctorDto(doctor.getId(), doctor.getName(), doctor.getHospital_id(),
+                    doctor.is_director(),doctor.getContactNo()));
+        }
+        return doctorDtos;
+    }
+
+    @Override
+    public boolean saveDoctor(DoctorDto doctorDto,Connection con) throws SQLException {
+        return doctorRepo.saveDotor(doctorDto, con);
+    }
+
+    @Override
+    public List<DoctorDto2> getAllDoctors(Connection con) throws SQLException {
+        List<DoctorDto2> doctorDtos2=new ArrayList<>();
+        List<Doctor> doctorList = doctorRepo.getDoctorList(con);
+        for (Doctor doctor: doctorList) {
+                if(doctor.is_director()==true){
+                    doctorDtos2.add(new DoctorDto2(doctor.getId(), doctor.getName(), doctor.getHospital_id(),
+                            "Yes",doctor.getContactNo()));
+                }else {
+                    doctorDtos2.add(new DoctorDto2(doctor.getId(), doctor.getName(), doctor.getHospital_id(),
+                            "No",doctor.getContactNo()));
+                }
+        }
+        return doctorDtos2;
+    }
 
 }

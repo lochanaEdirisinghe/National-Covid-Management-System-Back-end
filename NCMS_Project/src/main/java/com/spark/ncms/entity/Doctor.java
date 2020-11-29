@@ -12,4 +12,5 @@ public class Doctor {
     private String name;
     private String hospital_id;
     private boolean is_director;
+    private int contactNo;
 }
