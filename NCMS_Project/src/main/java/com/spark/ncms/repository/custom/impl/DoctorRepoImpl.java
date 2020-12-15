@@ -1,6 +1,6 @@
 package com.spark.ncms.repository.custom.impl;
 
-import com.spark.ncms.dto.DoctorDto;
+import com.spark.ncms.dto.DoctorDto1;
 import com.spark.ncms.entity.Doctor;
 import com.spark.ncms.repository.custom.DoctorRepository;
 
@@ -64,13 +64,13 @@ public class DoctorRepoImpl implements DoctorRepository {
     }
 
     @Override
-    public boolean saveDotor(DoctorDto doctorDto, Connection con) throws SQLException {
+    public boolean saveDotor(DoctorDto1 doctorDto1, Connection con) throws SQLException {
         PreparedStatement pstm = con.prepareStatement("insert into doctor values(?,?,? ,?,?)");
-        pstm.setObject(1, doctorDto.getId());
-        pstm.setObject(2, doctorDto.getName());
-        pstm.setObject(3, doctorDto.getHospitalId());
-        pstm.setObject(4, doctorDto.isDirector());
-        pstm.setObject(5, doctorDto.getContactNo());
+        pstm.setObject(1, doctorDto1.getId());
+        pstm.setObject(2, doctorDto1.getName());
+        pstm.setObject(3, doctorDto1.getHospitalId());
+        pstm.setObject(4, doctorDto1.isDirector());
+        pstm.setObject(5, doctorDto1.getContactNo());
         int i = pstm.executeUpdate();
         if (i>0){
             return true;

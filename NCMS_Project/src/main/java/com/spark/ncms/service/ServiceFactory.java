@@ -14,7 +14,11 @@ public class ServiceFactory {
     //Singleton
     public static ServiceFactory getInstance() {
         if(serviceFactory==null){
-            serviceFactory=new ServiceFactory();
+            synchronized (ServiceFactory.class){
+                if(serviceFactory==null){
+                    serviceFactory=new ServiceFactory();
+                }
+            }
         }
         return serviceFactory;
     }

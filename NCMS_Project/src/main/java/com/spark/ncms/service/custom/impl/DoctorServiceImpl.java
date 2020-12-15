@@ -1,9 +1,8 @@
 package com.spark.ncms.service.custom.impl;
 
-import com.spark.ncms.dto.DoctorDto;
+import com.spark.ncms.dto.DoctorDto1;
 import com.spark.ncms.dto.DoctorDto2;
 import com.spark.ncms.entity.Doctor;
-import com.spark.ncms.entity.Hospital;
 import com.spark.ncms.entity.Patient;
 import com.spark.ncms.repository.RepoFactory;
 import com.spark.ncms.repository.RepoType;
@@ -65,20 +64,20 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<DoctorDto> getAllDoctors(String hospitalId, Connection con) throws SQLException {
-        List<DoctorDto> doctorDtos=new ArrayList<>();
+    public List<DoctorDto1> getAllDoctors(String hospitalId, Connection con) throws SQLException {
+        List<DoctorDto1> doctorDto1s =new ArrayList<>();
         List<Doctor> doctorList = doctorRepo.getDoctorList(hospitalId, con);
         for (Doctor doctor: doctorList) {
 
-            doctorDtos.add(new DoctorDto(doctor.getId(), doctor.getName(), doctor.getHospital_id(),
+            doctorDto1s.add(new DoctorDto1(doctor.getId(), doctor.getName(), doctor.getHospital_id(),
                     doctor.is_director(),doctor.getContactNo()));
         }
-        return doctorDtos;
+        return doctorDto1s;
     }
 
     @Override
-    public boolean saveDoctor(DoctorDto doctorDto,Connection con) throws SQLException {
-        return doctorRepo.saveDotor(doctorDto, con);
+    public boolean saveDoctor(DoctorDto1 doctorDto1, Connection con) throws SQLException {
+        return doctorRepo.saveDotor(doctorDto1, con);
     }
 
     @Override

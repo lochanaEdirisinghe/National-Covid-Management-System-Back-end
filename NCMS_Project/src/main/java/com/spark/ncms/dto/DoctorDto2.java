@@ -12,7 +12,6 @@ public class DoctorDto2 {
     private String id;
     private String name;
     private String hospitalId;
-    private String isDirector;
+    private String  isDirector;
     private int contactNo;
-
 }

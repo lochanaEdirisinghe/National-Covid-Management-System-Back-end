@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorDto {
+public class DoctorDto1 {
 
     private String id;
     private String name;
     private String hospitalId;
     private boolean isDirector;
     private int contactNo;
+
 
 }

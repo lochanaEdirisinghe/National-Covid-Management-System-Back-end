@@ -39,9 +39,21 @@ public class MohServiceImpl implements MohService {
     @Override
     public boolean addNewHospital(HospitalDto hospitalDto, Connection con) throws SQLException, ClassNotFoundException {
         Hospital hospital = new Hospital(hospitalDto.getId(), hospitalDto.getName(), hospitalDto.getDistrict(), hospitalDto.getLocationX(), hospitalDto.getLocationY());
-        boolean isAdded = hospitalRepo.addNewHospital(hospital, con);
-        hospitalBedRepository.addHospitalBed(hospital.getId(), con);
-        return isAdded;
+        try {
+            con.setAutoCommit(false);
+            boolean isAdded = hospitalRepo.addNewHospital(hospital, con);
+            if (isAdded){
+                boolean addBedList = hospitalBedRepository.addHospitalBed(hospital.getId(), con);
+                if (addBedList){
+                    con.commit();
+                    return true;
+                }
+            }
+            con.rollback();
+        }finally {
+            con.setAutoCommit(true);
+        }
+        return false;
     }
 
     @Override
@@ -58,17 +70,25 @@ public class MohServiceImpl implements MohService {
     @Override
     public boolean updateQueue(String hospitalId, Connection con) throws SQLException, ClassNotFoundException {
         boolean isupdated = false;
-        List<PatientQueue> queuePatients = queueRepo.getQueuePatients(con);
-        for (PatientQueue p : queuePatients) {
-            int bedId = hospitalBedRepository.getBedId(hospitalId, con);
-             isupdated= hospitalBedRepository.patientBedUpdate(hospitalId, bedId, p.getPatientId(), con);
-            System.out.println(isupdated);
-        }
 
-        boolean isdelete = queueRepo.deleteQueue(con);
+        try {
+            con.setAutoCommit(false);
+            List<PatientQueue> queuePatients = queueRepo.getQueuePatients(con);
+            for (PatientQueue p : queuePatients) {
+                int bedId = hospitalBedRepository.getBedId(hospitalId, con);
+                isupdated = hospitalBedRepository.patientBedUpdate(hospitalId, bedId, p.getPatientId(), con);
+            }
+            if (isupdated) {
+                boolean isdelete = queueRepo.deleteQueue(con);
+                if (isdelete) {
+                    con.commit();
+                    return true;
+                }
+            }
+            con.rollback();
 
-        if(isdelete==true && isupdated==true){
-            return true;
+        }finally {
+            con.setAutoCommit(true);
         }
         return false;
     }

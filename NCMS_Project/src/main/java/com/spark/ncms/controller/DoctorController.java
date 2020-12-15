@@ -1,9 +1,8 @@
 package com.spark.ncms.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spark.ncms.dto.DoctorDto;
+import com.spark.ncms.dto.DoctorDto1;
 import com.spark.ncms.dto.DoctorDto2;
-import com.spark.ncms.dto.PatientDto;
 import com.spark.ncms.response.HospitaBedResponse;
 import com.spark.ncms.response.StandardResponse;
 import com.spark.ncms.service.ServiceFactory;
@@ -78,7 +77,7 @@ public class DoctorController extends HttpServlet {
                     String hospitalId = req.getParameter("hospitalId");
                     BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
                     try (Connection con = bds.getConnection()) {
-                        List<DoctorDto> allDoctors = doctorService.getAllDoctors(hospitalId, con);
+                        List<DoctorDto1> allDoctors = doctorService.getAllDoctors(hospitalId, con);
                         ObjectMapper mapper = new ObjectMapper();
                         String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  allDoctors));
                         CommonMethods.responseProcess(req,resp, responseJson);
@@ -169,11 +168,11 @@ public class DoctorController extends HttpServlet {
         String hospitalId = jsonObject.getString("hospital");
         boolean isDirector = Boolean.parseBoolean(jsonObject.getString("director"));
 
-        DoctorDto doctorDto = new DoctorDto(doctorId, doctorName, hospitalId,isDirector, contactNo);
+        DoctorDto1 doctorDto1 = new DoctorDto1(doctorId, doctorName, hospitalId,isDirector, contactNo);
         try {
             BasicDataSource bds = (BasicDataSource) getServletContext().getAttribute("db");
             try (Connection con = bds.getConnection()) {
-                boolean isAdded = doctorService.saveDoctor(doctorDto, con);
+                boolean isAdded = doctorService.saveDoctor(doctorDto1, con);
                 ObjectMapper mapper = new ObjectMapper();
                 String responseJson = mapper.writeValueAsString(new StandardResponse(HttpServletResponse.SC_OK, "true",  isAdded));
                 CommonMethods.responseProcess(req,resp, responseJson);

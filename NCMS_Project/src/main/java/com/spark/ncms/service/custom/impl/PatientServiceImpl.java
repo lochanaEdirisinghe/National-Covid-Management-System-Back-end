@@ -26,7 +26,6 @@ public class PatientServiceImpl implements PatientService {
     private HospitalBedRepository hospitalBedRepo;
     private PatientRepository patientRepo;
     private RepoFactory repoFactory;
-    //private RepoFactory doctorRepo;
 
     public PatientServiceImpl() {
         this.repoFactory=RepoFactory.getInstance();
@@ -34,7 +33,6 @@ public class PatientServiceImpl implements PatientService {
         queueRepo = repoFactory.getRepo(RepoType.PATIENT_QUEUE);
         hospitalBedRepo = repoFactory.getRepo(RepoType.HOSPITAL_BED);
         patientRepo = repoFactory.getRepo(RepoType.PATIENT);
-        //doctorRepo = repoFactory.getRepo(RepoType.DOCTOR);
     }
 
     @Override
@@ -49,50 +47,59 @@ public class PatientServiceImpl implements PatientService {
         ArrayList<Hospital> hospitalDetails = new ArrayList<>();
         List<String> hospitals = hospitalBedRepo.BedsAvailableHospitals(con);
 
-        if (patientX <= 600 && patientY <= 600) {
-            String patientId = idGenerator(patientDto.getFirstName());
-            Patient patientEntity = new Patient(patientId, patientDto.getFirstName(), patientDto.getLastName(), patientDto.getDistrict(),
-                    patientDto.getLocationX(), patientDto.getLocationY(), null, patientDto.getGender(), patientDto.getContactNo(),
-                    patientDto.getEmail(), patientDto.getAge(), null, null, null, null);
+        try {
+            con.setAutoCommit(false);
 
-            patientRepo.savePatient(patientEntity, con);
+            if (patientX <= 600 && patientY <= 600) {
+                String patientId = idGenerator(patientDto.getFirstName());
+                Patient patientEntity = new Patient(patientId, patientDto.getFirstName(), patientDto.getLastName(), patientDto.getDistrict(),
+                        patientDto.getLocationX(), patientDto.getLocationY(), null, patientDto.getGender(), patientDto.getContactNo(),
+                        patientDto.getEmail(), patientDto.getAge(), null, null, null, null);
 
-            if (!hospitals.isEmpty()) {
-                for (String Hid : hospitals) {
-                    hospitalDetails.add(hospitalRepo.getHospital(Hid, con));
-                }
-                for (Hospital hospital : hospitalDetails) {
+                patientRepo.savePatient(patientEntity, con);
 
-                    double distance = findDistance(hospital.getLocation_x(), hospital.getLocation_y(), patientX, patientY);
+                if (!hospitals.isEmpty()) {
+                    for (String Hid : hospitals) {
+                        hospitalDetails.add(hospitalRepo.getHospital(Hid, con));
+                    }
+                    for (Hospital hospital : hospitalDetails) {
 
-                    if (minimumDistance == 0.0) {
-                        minimumDistance = distance;
-                        finalHid = hospital.getId();
-                        finalHname = hospital.getName();
-                    } else {
-                        if (minimumDistance > distance) {
+                        double distance = findDistance(hospital.getLocation_x(), hospital.getLocation_y(), patientX, patientY);
+
+                        if (minimumDistance == 0.0) {
                             minimumDistance = distance;
                             finalHid = hospital.getId();
                             finalHname = hospital.getName();
+                        } else {
+                            if (minimumDistance > distance) {
+                                minimumDistance = distance;
+                                finalHid = hospital.getId();
+                                finalHname = hospital.getName();
+                            }
                         }
                     }
+
+                    int bedId = hospitalBedRepo.getBedId(finalHid, con);
+                    hospitalBedRepo.patientBedUpdate(finalHid, bedId, patientId, con);
+                    con.commit();
+                    return new PatientResponse(patientId, bedId, finalHname, 0);
+
                 }
-
-                int bedId = hospitalBedRepo.getBedId(finalHid, con);
-                hospitalBedRepo.patientBedUpdate(finalHid, bedId, patientId, con);
-
-                return new PatientResponse(patientId, bedId, finalHname, 0);
+                con.rollback();
+                boolean addedToQueue = queueRepo.addToQueue(patientId, con);
+                if (addedToQueue) {
+                    con.commit();
+                    queueNo = queueRepo.getQueueNo(patientId, con);
+                    return new PatientResponse(patientId, 0, finalHname, queueNo);
+                }
+                con.rollback();
 
             }
-            boolean addedToQueue = queueRepo.addToQueue(patientId, con);
-            if (addedToQueue) {
-                queueNo = queueRepo.getQueueNo(patientId, con);
-            }
-            return new PatientResponse(patientId, 0, finalHname, queueNo);
-
-        }else {
-            return null;
+        } finally {
+            con.setAutoCommit(true);
         }
+        return null;
+
     }
 
     @Override
@@ -135,13 +142,21 @@ public class PatientServiceImpl implements PatientService {
             boolean isUpdated = patientRepo.updatePatient(patientId, doctorId, slevel, doctorRole, con);
             return isUpdated;
         } else if (doctorRole.equals("discharge")) {
-            boolean isUpdatedPatient = patientRepo.updatePatient(patientId, doctorId,  slevel, doctorRole, con);
-            boolean isUpdatedHosBed = hospitalBedRepo.updateHospitalBed(patientId, con);
-            if (isUpdatedPatient == true && isUpdatedHosBed == true) {
-                return true;
-            } else {
-                return false;
+            try {
+                con.setAutoCommit(false);
+                boolean isUpdatedPatient = patientRepo.updatePatient(patientId, doctorId,  slevel, doctorRole, con);
+                if(isUpdatedPatient){
+                    boolean isUpdatedHosBed = hospitalBedRepo.updateHospitalBed(patientId, con);
+                    if (isUpdatedHosBed){
+                        con.commit();
+                        return true;
+                    }
+                }
+                con.rollback();
+            }finally {
+                con.setAutoCommit(true);
             }
+
         }
         return false;
     }

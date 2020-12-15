@@ -1,7 +1,7 @@
 package com.spark.ncms.repository.custom;
 
 
-import com.spark.ncms.dto.DoctorDto;
+import com.spark.ncms.dto.DoctorDto1;
 import com.spark.ncms.entity.Doctor;
 
 import java.sql.Connection;
@@ -15,7 +15,7 @@ public interface DoctorRepository extends SuperRepository{
 
     List<Doctor> getDoctorList(String hospitalId, Connection con) throws SQLException;
 
-    boolean saveDotor(DoctorDto doctorDto, Connection con) throws SQLException;
+    boolean saveDotor(DoctorDto1 doctorDto1, Connection con) throws SQLException;
 
     List<Doctor> getDoctorList(Connection con) throws SQLException;
 }
